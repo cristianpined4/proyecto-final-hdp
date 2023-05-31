@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (usuarioLogin != null) {
     if (doc == "Login" || doc == "Registro") {
       route.GoToWith("?view=Inicio");
+      return;
     }
     document.querySelector(".menu-no-user").classList.add("d-none");
     document.querySelector(".menu-user").classList.remove("d-none");
@@ -36,10 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (usuarioLogin.rol == "usuario" && rutasProtegidas.indexOf(doc) != -1) {
       route.GoToWith("?view=Inicio");
+      return;
     }
   } else {
     if (rutasProtegidas.indexOf(doc) != -1) {
       route.GoToWith("?view=Login");
+      return;
     }
   }
 
