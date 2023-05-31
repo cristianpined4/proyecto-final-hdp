@@ -1,11 +1,11 @@
 import Router from "./Router.js";
 
-let arrayPermisos = {
-  admin: ["Inicio"],
-  usuario: ["Inicio"],
-};
+let rutasProtegidas = ["Admin"];
 
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(
+    "footer div.copyright"
+  ).innerHTML = `Copyright &copy; ${moment().format("YYYY")} - GRUPO`;
   let usuarioLogin = localStorage.getItem("current-user") || null,
     container = "#app",
     navLink = "nav ul li a",
@@ -20,12 +20,25 @@ document.addEventListener("DOMContentLoaded", () => {
     doc = "Inicio";
   }
 
-  if (usuarioLogin != null && doc != "Login") {
-    if (arrayPermisos[usuarioLogin.rol].indexOf(doc) == -1) {
-      route.GoToWith("?view=Login");
+  if (usuarioLogin != null) {
+    if (doc == "Login" || doc == "Registro") {
+      route.GoToWith("?view=Inicio");
+    }
+    document.querySelector(".menu-no-user").classList.add("d-none");
+    document.querySelector(".menu-user").classList.remove("d-none");
+    document.querySelector(".menu-user img").title = usuarioLogin.name;
+    document.querySelector(".menu-user img").alt = usuarioLogin.name;
+    document.querySelector(
+      ".menu-user img"
+    ).parentElement.innerHTML += `<span class="text-white" style="margin-left: 0.5rem;">${usuarioLogin.name}</span>`;
+    if (usuarioLogin.rol == "admin") {
+      document.querySelector(".menu-admin").classList.remove("d-none");
+    }
+    if (usuarioLogin.rol == "usuario" && rutasProtegidas.indexOf(doc) != -1) {
+      route.GoToWith("?view=Inicio");
     }
   } else {
-    if (arrayPermisos["usuario"].indexOf(doc) == -1) {
+    if (rutasProtegidas.indexOf(doc) != -1) {
       route.GoToWith("?view=Login");
     }
   }
@@ -53,6 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((err) => {
       document.title = `Page not found - ${title}`;
       document.querySelector(container).innerHTML =
-        "<h1 class='error-message'>Error 404: Page not found</h1>";
+        "<div class='container'><div class='card my-3 p-4'><h1 class='error-message text-center display-2 text-danger'>Error 404<br><span class='text-black display-5'>Esta pagina no fue encontrada o no existe!!</span></h1><a class='btn btn-outline-primary rounded-4 btn-lg' style='width: fit-content;display: block;margin: 1rem auto;' href='?view=Inicio'>Ir a inicio</a></div></div>";
     });
 });
