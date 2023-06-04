@@ -1,6 +1,65 @@
-<div class="container">
+<style>
+  .navbar {
+    z-index: 999;
+    box-shadow: none;
+  }
+
+  .navbar.bg-dark {
+    background-color: transparent !important;
+  }
+
+  .navbar:has(.navbar-collapse.collapse.show) {
+    background-color: rgb(51, 45, 45) !important;
+  }
+
+  #app {
+    margin-top: -5rem;
+  }
+
+  .slider .slider-slides {
+    height: 450px;
+  }
+
+  .slider .slider-slides .slider-slide div .caption {
+    z-index: 0;
+  }
+
+  .mt--5 {
+    margin-top: -4rem !important;
+    z-index: 99;
+  }
+
+  .mt--5 .row {
+    height: 80vh;
+  }
+</style>
+
+<div id="slider">
+  <div>
+    <img src="https://mdbcdn.b-cdn.net/img/new/slides/017.webp">
+    <span>
+      <h2>Titulo</h2>
+      <p>Historia</p>
+    </span>
+  </div>
+  <div>
+    <img src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp">
+    <span>
+      <h2>Titulo 2</h2>
+      <p>Historia 2</p>
+    </span>
+  </div>
+  <div>
+    <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp">
+    <span>
+      <h2>Titulo 3</h2>
+      <p>Historia 3</p>
+    </span>
+  </div>
+</div>
+<div class="container mt--5">
   <div class="row">
-    <div class="col-md-12 card">
+    <div class="col-md-12 card px-5 pt-5">
       <h1>Inicio</h1>
     </div>
   </div>
