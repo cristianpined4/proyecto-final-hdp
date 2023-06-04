@@ -1,12 +1,69 @@
+import Usuarios from "../models/Usuarios.js";
+import Post from "../models/Post.js";
+import Comentarios from "../models/Comentarios.js";
 import Router from "./Router.js";
 
 let rutasProtegidas = ["Admin"];
 
 document.addEventListener("DOMContentLoaded", () => {
+  let usuarios = new Usuarios();
+  if (usuarios.all().length == 0) {
+    usuarios.name = "Administrador";
+    usuarios.username = "admin";
+    usuarios.password = "admin";
+    usuarios.email = "admin@admin.com";
+    usuarios.rol = "admin";
+    usuarios.save();
+  }
+  let post = new Post();
+  if (post.all().length == 0) {
+    post.titulo = "Post de prueba 1";
+    post.contendido = "Lorem ipsum dolor sit amet cons 1";
+    post.id_usuario = usuarios.all()[0].id;
+    post.imagenUrl = "https://i.blogs.es/ceda9c/dalle/1366_2000.jpg";
+    post.status = "publicado";
+    post.save();
+    post = new Post();
+    post.titulo = "Post de prueba 2";
+    post.contendido = "Lorem ipsum dolor sit amet cons 2";
+    post.id_usuario = usuarios.all()[0].id;
+    post.imagenUrl = "https://i.blogs.es/b56bb3/shutterstock/1366_2000.jpg";
+    post.status = "publicado";
+    post.save();
+  }
+
+  let comentarios = new Comentarios();
+  if (comentarios.all().length == 0) {
+    comentarios.id_post = post.all()[0].id;
+    comentarios.id_usuario = usuarios.all()[0].id;
+    comentarios.comentario = "Comentario de prueba 1";
+    comentarios.status = "aceptado";
+    comentarios.save();
+    comentarios = new Comentarios();
+    comentarios.id_post = post.all()[0].id;
+    comentarios.id_usuario = usuarios.all()[0].id;
+    comentarios.comentario = "Comentario de prueba hijo 1";
+    comentarios.id_comentario_padre = comentarios.all()[0].id;
+    comentarios.status = "aceptado";
+    comentarios.save();
+    comentarios = new Comentarios();
+    comentarios.id_post = post.all()[0].id;
+    comentarios.id_usuario = usuarios.all()[0].id;
+    comentarios.comentario = "Comentario de prueba 2";
+    comentarios.status = "aceptado";
+    comentarios.save();
+    comentarios = new Comentarios();
+    comentarios.id_post = post.all()[1].id;
+    comentarios.id_usuario = usuarios.all()[0].id;
+    comentarios.comentario = "Comentario de prueba 3";
+    comentarios.status = "aceptado";
+    comentarios.save();
+  }
+
   document.querySelector(
     "footer div.copyright"
   ).innerHTML = `Copyright &copy; ${moment().format("YYYY")} - GRUPO`;
-  let usuarioLogin = localStorage.getItem("current-user") || null,
+  let usuarioLogin = JSON.parse(localStorage.getItem("current-user")) || null,
     container = "#app",
     navLink = "nav ul li a",
     title = document.title;
@@ -22,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (usuarioLogin != null) {
     if (doc == "Login" || doc == "Registro") {
-      route.GoToWith("?view=Inicio");
+      route.GoTo("?view=Inicio");
       return;
     }
     document.querySelector(".menu-no-user").classList.add("d-none");
@@ -36,12 +93,12 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".menu-admin").classList.remove("d-none");
     }
     if (usuarioLogin.rol == "usuario" && rutasProtegidas.indexOf(doc) != -1) {
-      route.GoToWith("?view=Inicio");
+      route.GoTo("?view=Inicio");
       return;
     }
   } else {
     if (rutasProtegidas.indexOf(doc) != -1) {
-      route.GoToWith("?view=Login");
+      route.GoTo("?view=Login");
       return;
     }
   }
@@ -71,4 +128,12 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(container).innerHTML =
         "<div class='container'><div class='card my-3 p-4'><h1 class='error-message text-center display-2 text-danger'>Error 404<br><span class='text-black display-5'>Esta pagina no fue encontrada o no existe!!</span></h1><a class='btn btn-outline-primary rounded-4 btn-lg' style='width: fit-content;display: block;margin: 1rem auto;' href='?view=Inicio'>Ir a inicio</a></div></div>";
     });
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target.matches("nav ul li a[data-logout]")) {
+    localStorage.removeItem("current-user");
+    let route = new Router();
+    route.GoTo("?view=Login");
+  }
 });
