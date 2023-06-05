@@ -33,14 +33,16 @@ let comentarios = new Comentarios()
   .findRelated("comentarios", "id_post", post.id)
   .filter((comentario) => comentario.status == "aceptado");
 
-let date = moment(post.create_date, "DD/MM/YYYY h:mm:ss a").format("LLLL");
+let date = moment(post.create_date, "DD/MM/YYYY h:mm:ss a").format(
+  "dddd DD/MMMM/YYYY h:mm:ss a"
+);
 
 const $post = document.querySelector(".card.post");
 $post.querySelector("img").src = post.imagenUrl;
 $post.querySelector("img").alt = post.titulo;
 $post.querySelector(".card-title").innerHTML = post.titulo;
 $post.querySelector(".card-text").innerHTML = `
-<p class="d-flex justify-content-between align-items-center my-3">
+<p class="d-flex justify-content-between align-items-center-md flex-column flex-md-row my-3">
   <small class="text-muted">
     <i class="fas fa-user me-1"></i> 
     ${autor.name}
@@ -71,7 +73,7 @@ const renderComentarios = (comentarios) => {
       let date_post = moment(el.create_date, "DD/MM/YYYY h:mm:ss a").fromNow();
       html += `<div class="card mb-3">
           <div class="card-body">
-            <h5 class="mt-0 d-flex justify-content-between">
+            <h6 class="mt-0 d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted">
                 <i class="fas fa-user me-1"></i> 
                 ${autor.name}
@@ -80,7 +82,7 @@ const renderComentarios = (comentarios) => {
                 <i class="fas fa-clock me-1"></i> 
                 ${date_post}
               </small>
-            </h5>
+            </h6>
             <p>${el.comentario}</p>
             <button class="btn btn-outline-primary" data-padre="${el.id}">Responder</button>
           </div>
@@ -95,7 +97,7 @@ const renderComentarios = (comentarios) => {
         ).fromNow();
         html += `<div class="card ms-5 mb-3">
           <div class="card-body">
-            <h5 class="mt-0 d-flex justify-content-between">
+            <h6 class="mt-0 d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted">
                 <i class="fas fa-user me-1"></i> 
                 ${autor2.name}
@@ -104,7 +106,7 @@ const renderComentarios = (comentarios) => {
                 <i class="fas fa-clock me-1"></i> 
                 ${date_post}
               </small>
-            </h5>
+            </h6>
             <p>${el2.comentario}</p>
           </div>
         </div>`;
@@ -276,7 +278,7 @@ document.addEventListener("click", (e) => {
     <div class="form-group mt-2">
     <div class="alert alert-info" role="alert">
       Responde a este comentario de &nbsp; ${
-        e.target.parentNode.querySelector("h5 small:first-child").innerHTML
+        e.target.parentNode.querySelector("h6 small:first-child").innerHTML
       }.
     </div>
         <label for="comentario">Comentario</label>

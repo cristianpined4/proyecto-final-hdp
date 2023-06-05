@@ -1,9 +1,9 @@
 /**
- ***  Class Model - Version 1.0.0
- ***  Description: This class is a model for the localStorage of the browser and it is used to create, read, update and delete data
-                   from  the localStorage.
- ***  Author: Cristian Pineda <cristianpined4.outlook.com>
- ***  License: MIT License
+ **  Model Class - Version 1.0.0
+ **  Description: This class is a model for the localStorage of the browser and it is used to create, read, update and delete data from  the localStorage.
+ **  Author: Cristian Pineda <cristianpined4.outlook.com>
+ **  CopyRight: Cristian Pineda 2023
+ **  License: MIT License
  **/
 
 class Model {

@@ -41,7 +41,7 @@ posts.forEach((el, index) => {
           <img src="${el.imagenUrl}" alt=""> 
           <div class="card-body">
             <h5 class="card-title">${el.titulo}</h5>
-            <p class="d-flex justify-content-between align-items-center">
+            <p class="d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted">
                 <i class="fas fa-user me-1"></i> 
                 ${autor.name}
