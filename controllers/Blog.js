@@ -8,7 +8,9 @@ const stripHtmlTags = (text) => {
 
 let post = new Post(),
   posts = post.all().filter((el) => el.status == "publicado"),
-  html = "";
+  html = "",
+  currentPage = 1,
+  itemsPerPage = 9;
 
 posts = posts.sort(
   (a, b) =>
@@ -26,12 +28,17 @@ html += `
   `;
 document.querySelector("#slider").innerHTML = html;
 
-html = "";
-posts.forEach((el, index) => {
-  let date = moment(el.create_date, "DD/MM/YYYY h:mm:ss a").fromNow(),
-    autor = new Usuarios().findById(el.id_usuario);
+const renderPosts = () => {
+  let startIndex = (currentPage - 1) * itemsPerPage,
+    endIndex = startIndex + itemsPerPage,
+    paginatedData = posts.slice(startIndex, endIndex);
 
-  html += `
+  html = "";
+  paginatedData.some((el, index) => {
+    let date = moment(el.create_date, "DD/MM/YYYY h:mm:ss a").fromNow(),
+      autor = new Usuarios().findById(el.id_usuario);
+
+    html += `
     <div class="col col-12 col-md-6 col-lg-4">
         <div class="card border shadow-3">
           <img src="${el.imagenUrl}" alt=""> 
@@ -57,7 +64,37 @@ posts.forEach((el, index) => {
         </div>
     </div>
     `;
-});
-document.querySelector("#last-post").innerHTML = html;
+    return index == paginatedData.length;
+  });
+  document.querySelector("#last-post").innerHTML = html;
+};
+
+renderPosts();
+
+let paginationElement = document.querySelector("nav ul.pagination"),
+  totalPages = Math.ceil(posts.length / itemsPerPage);
+for (let i = 1; i <= totalPages; i++) {
+  let li = document.createElement("li");
+  li.classList.add("page-item", "mx-2");
+  li.style.cursor = "pointer";
+  let a = document.createElement("a");
+  a.classList.add("page-link");
+  a.textContent = i;
+  if (i == currentPage) {
+    li.classList.add("active");
+  }
+  li.appendChild(a);
+  li.addEventListener("click", function () {
+    currentPage = parseInt(this.textContent);
+    document
+      .querySelector("nav ul.pagination li.active")
+      .classList.remove("active");
+    this.classList.add("active");
+    document.scrollingElement.scrollTop = 0;
+    renderPosts();
+  });
+
+  paginationElement.appendChild(li);
+}
 
 slideResponsive("#slider", { autoPlay: true, playTime: 3, isHeader: true });

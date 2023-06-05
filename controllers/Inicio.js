@@ -16,7 +16,7 @@ posts = posts.sort(
     moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
 );
 
-posts.forEach((el, index) => {
+posts.some((el, index) => {
   html += `
     <div>
         <img src="${el.imagenUrl}" alt=""> 
@@ -26,12 +26,12 @@ posts.forEach((el, index) => {
         </span>
     </div>
     `;
-  if (index == 3) return;
+  return index == 2;
 });
 document.querySelector("#slider").innerHTML = html;
 
 html = "";
-posts.forEach((el, index) => {
+posts.some((el, index) => {
   let date = moment(el.create_date, "DD/MM/YYYY h:mm:ss a").fromNow(),
     autor = new Usuarios().findById(el.id_usuario);
 
@@ -61,7 +61,7 @@ posts.forEach((el, index) => {
         </div>
     </div>
     `;
-  if (index == 5) return;
+  return index == 5;
 });
 document.querySelector("#last-post").innerHTML = html;
 
