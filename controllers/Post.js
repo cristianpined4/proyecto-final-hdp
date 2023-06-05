@@ -1,6 +1,6 @@
 import Post from "../models/Post.js";
 import Comentarios from "../models/Comentarios.js";
-import Router from "../config/router.js";
+import Router from "../config/Router.js";
 import sliderResponsive from "../config/slideResponsive.js";
 
 const routes = new Router();
