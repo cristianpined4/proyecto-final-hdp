@@ -16,6 +16,8 @@ if (post == null) {
   routes.GoTo("?view=error");
 }
 
+document.title = document.title.replace("Post", post.titulo);
+
 const $slider = document.querySelector("#slider");
 $slider.innerHTML = `
   <div>
@@ -74,7 +76,7 @@ const renderComentarios = (comentarios) => {
       html += `<div class="card mb-3">
           <div class="card-body">
             <h6 class="mt-0 d-flex justify-content-between align-items-center-md flex-column flex-md-row">
-              <small class="text-muted">
+              <small class="text-muted mb-2">
                 <i class="fas fa-user me-1"></i> 
                 ${autor.name}
               </small>
@@ -98,7 +100,7 @@ const renderComentarios = (comentarios) => {
         html += `<div class="card ms-5 mb-3">
           <div class="card-body">
             <h6 class="mt-0 d-flex justify-content-between align-items-center-md flex-column flex-md-row">
-              <small class="text-muted">
+              <small class="text-muted mb-2">
                 <i class="fas fa-user me-1"></i> 
                 ${autor2.name}
               </small>
