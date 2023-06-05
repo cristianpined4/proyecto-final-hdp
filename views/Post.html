@@ -1,0 +1,71 @@
+<style>
+  .navbar {
+    z-index: 999;
+    box-shadow: none;
+  }
+
+  .navbar.bg-dark {
+    background-color: transparent !important;
+  }
+
+  .navbar:has(.navbar-collapse.collapse.show) {
+    background-color: rgb(51, 45, 45) !important;
+  }
+
+  #app {
+    margin-top: -5rem;
+  }
+
+  .slider .slider-slides {
+    height: 450px;
+  }
+
+  .slider .slider-slides .slider-slide div .caption {
+    z-index: 0;
+  }
+
+  .mt--5 {
+    margin-top: -4rem !important;
+    margin-bottom: 1rem !important;
+    z-index: 99;
+  }
+</style>
+<div id="slider"></div>
+<main class="container mt--5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card post">
+        <div class="card-body">
+          <h2 class="card-title text-center my-4"></h2>
+          <img src="" class="card-img-top my-3" style="height: 400px;" alt="">
+          <div class="card-text"></div>
+        </div>
+      </div>
+      <div class="social-buttons my-5 d-flex justify-content-around"><a class="btn btn-primary"><i
+            class="fab fa-facebook-square me-2"></i>Compartir</a><a class="btn btn-info"><i
+            class="fab fa-twitter me-2"></i>Compartir</a><a class="btn btn-success"><i
+            class="fab fa-whatsapp me-2"></i>Compartir</a></div>
+      <div class="comments mt-4">
+        <h4>Comentarios</h4>
+        <hr>
+        <div class="comentarios"></div>
+      </div>
+      <form class="mt-4 card form-comentarios">
+        <div class="card-body">
+          <h5>Deja un comentario</h5>
+          <div class="form-group mt-2">
+            <label for="nombre">Usuarios</label>
+            <input type="text" class="form-control" name="usuario" placeholder="Nombre" disabled>
+          </div>
+          <div class="form-group mt-2">
+            <label for="comentario">Comentario</label>
+            <textarea class="form-control" name="comentario" rows="3" placeholder="Escribe tu comentario"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary mt-2">Enviar
+            comentario</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+</main>

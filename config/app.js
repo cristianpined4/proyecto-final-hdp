@@ -1,6 +1,5 @@
 import Usuarios from "../models/Usuarios.js";
 import Post from "../models/Post.js";
-import Comentarios from "../models/Comentarios.js";
 import Router from "./Router.js";
 
 let rutasProtegidas = ["Admin"];
@@ -18,46 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
   let post = new Post();
   if (post.all().length == 0) {
     post.titulo = "Post de prueba 1";
-    post.contendido = "Lorem ipsum dolor sit amet cons 1";
+    post.contenido = "Lorem ipsum dolor sit amet cons 1";
     post.id_usuario = usuarios.all()[0].id;
     post.imagenUrl = "https://i.blogs.es/ceda9c/dalle/1366_2000.jpg";
     post.status = "publicado";
     post.save();
     post = new Post();
     post.titulo = "Post de prueba 2";
-    post.contendido = "Lorem ipsum dolor sit amet cons 2";
+    post.contenido = "Lorem ipsum dolor sit amet cons 2";
     post.id_usuario = usuarios.all()[0].id;
     post.imagenUrl = "https://i.blogs.es/b56bb3/shutterstock/1366_2000.jpg";
     post.status = "publicado";
     post.save();
-  }
-
-  let comentarios = new Comentarios();
-  if (comentarios.all().length == 0) {
-    comentarios.id_post = post.all()[0].id;
-    comentarios.id_usuario = usuarios.all()[0].id;
-    comentarios.comentario = "Comentario de prueba 1";
-    comentarios.status = "aceptado";
-    comentarios.save();
-    comentarios = new Comentarios();
-    comentarios.id_post = post.all()[0].id;
-    comentarios.id_usuario = usuarios.all()[0].id;
-    comentarios.comentario = "Comentario de prueba hijo 1";
-    comentarios.id_comentario_padre = comentarios.all()[0].id;
-    comentarios.status = "aceptado";
-    comentarios.save();
-    comentarios = new Comentarios();
-    comentarios.id_post = post.all()[0].id;
-    comentarios.id_usuario = usuarios.all()[0].id;
-    comentarios.comentario = "Comentario de prueba 2";
-    comentarios.status = "aceptado";
-    comentarios.save();
-    comentarios = new Comentarios();
-    comentarios.id_post = post.all()[1].id;
-    comentarios.id_usuario = usuarios.all()[0].id;
-    comentarios.comentario = "Comentario de prueba 3";
-    comentarios.status = "aceptado";
-    comentarios.save();
   }
 
   document.querySelector(

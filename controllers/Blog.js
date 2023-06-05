@@ -16,18 +16,14 @@ posts = posts.sort(
     moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
 );
 
-posts.forEach((el, index) => {
-  html += `
-    <div>
-        <img src="${el.imagenUrl}" alt=""> 
-        <span>
-            <h3>${el.titulo}</h3>
-            <p>${stripHtmlTags(el.contenido.substring(0, 20))}...</p>
-        </span>
-    </div>
-    `;
-  if (index == 3) return;
-});
+html += `
+  <div>
+      <img src="${posts[0].imagenUrl}" alt=""> 
+      <span>
+          <h2>Blog</h2>
+      </span>
+  </div>
+  `;
 document.querySelector("#slider").innerHTML = html;
 
 html = "";
@@ -61,7 +57,6 @@ posts.forEach((el, index) => {
         </div>
     </div>
     `;
-  if (index == 5) return;
 });
 document.querySelector("#last-post").innerHTML = html;
 
