@@ -157,6 +157,13 @@ document.addEventListener("submit", (e) => {
       error.innerHTML = "El comentario no puede estar vacio.";
       e.target.comentario.classList.add("is-invalid");
       e.target.comentario.parentNode.appendChild(error);
+      return;
+    }
+    if (e.target.querySelector(".error") != null) {
+      e.target.comentario.parentNode.removeChild(
+        e.target.querySelector(".error")
+      );
+      e.target.comentario.classList.remove("is-invalid");
     }
     let comentario = new Comentarios();
     comentario.id_post = post.id;
@@ -193,6 +200,7 @@ document.addEventListener("submit", (e) => {
       error.innerHTML = "El comentario no puede estar vacio.";
       e.target.comentario.classList.add("is-invalid");
       e.target.comentario.parentNode.appendChild(error);
+      return;
     }
     let comentario = new Comentarios();
     comentario.id_post = post.id;
