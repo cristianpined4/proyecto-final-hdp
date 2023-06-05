@@ -128,18 +128,19 @@ if (currentUsuario == null) {
     .querySelectorAll(".comentarios .card button")
     .forEach((el) => (el.style.display = "none"));
 }
-if (currentUsuario.status == "bloqueado") {
-  $formComentario.innerHTML = `
+if (currentUsuario != null) {
+  if (currentUsuario.status == "bloqueado") {
+    $formComentario.innerHTML = `
     <div class="alert alert-danger my-3 role="alert">
       Tu cuenta esta silenciada, no puedes comentar.
     </div>
   `;
-  document
-    .querySelectorAll(".comentarios .card button")
-    .forEach((el) => (el.style.display = "none"));
-}
-if (currentUsuario.status == "activo") {
-  $formComentario.usuario.value = currentUsuario.name;
+    document
+      .querySelectorAll(".comentarios .card button")
+      .forEach((el) => (el.style.display = "none"));
+  } else {
+    $formComentario.usuario.value = currentUsuario.name;
+  }
 }
 
 document.addEventListener("submit", (e) => {
