@@ -313,3 +313,6 @@ document.addEventListener("click", (e) => {
     );
   }
 });
+
+// Esta linea activa el edictor pero es para el apartado de administrador en el que se puede editar el post
+/* new FroalaEditor("textarea[name='comentario']", { language: "es" }); */
