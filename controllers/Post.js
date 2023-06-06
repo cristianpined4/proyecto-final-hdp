@@ -279,7 +279,7 @@ document.addEventListener("click", (e) => {
     form.innerHTML = `
     <div class="form-group mt-2">
     <div class="alert alert-info" role="alert">
-      Responde a este comentario de &nbsp; ${
+      Responde a &nbsp; ${
         e.target.parentNode.querySelector("h6 small:first-child").innerHTML
       }.
     </div>
