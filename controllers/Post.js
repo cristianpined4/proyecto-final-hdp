@@ -33,7 +33,12 @@ const autor = post.findRelated("usuarios", "id", post.id_usuario)[0];
 
 let comentarios = new Comentarios()
   .findRelated("comentarios", "id_post", post.id)
-  .filter((comentario) => comentario.status == "aceptado");
+  .filter((comentario) => comentario.status == "aceptado")
+  .sort(
+    (a, b) =>
+      moment(b.create_date, "DD/MM/YYYY h:mm:ss a").unix() -
+      moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
+  );
 
 let date = moment(post.create_date, "DD/MM/YYYY h:mm:ss a").format(
   "dddd DD/MMMM/YYYY h:mm:ss a"
@@ -181,7 +186,12 @@ document.addEventListener("submit", (e) => {
     if (currentUsuario.rol == "admin") {
       comentarios = new Comentarios()
         .findRelated("comentarios", "id_post", post.id)
-        .filter((comentario) => comentario.status == "aceptado");
+        .filter((comentario) => comentario.status == "aceptado")
+        .sort(
+          (a, b) =>
+            moment(b.create_date, "DD/MM/YYYY h:mm:ss a").unix() -
+            moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
+        );
       renderComentarios(comentarios);
     } else {
       $formComentario.innerHTML = `
@@ -224,7 +234,12 @@ document.addEventListener("submit", (e) => {
     if (currentUsuario.rol == "admin") {
       comentarios = new Comentarios()
         .findRelated("comentarios", "id_post", post.id)
-        .filter((comentario) => comentario.status == "aceptado");
+        .filter((comentario) => comentario.status == "aceptado")
+        .sort(
+          (a, b) =>
+            moment(b.create_date, "DD/MM/YYYY h:mm:ss a").unix() -
+            moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
+        );
       renderComentarios(comentarios);
     }
   }
