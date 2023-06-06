@@ -284,7 +284,7 @@ document.addEventListener("click", (e) => {
       }.
     </div>
         <label for="comentario">Comentario</label>
-        <textarea class="form-control" name="comentario" rows="3" placeholder="Escribe tu comentario"></textarea>
+        <textarea class="form-control" name="comentario" rows="3" placeholder="Escribe tu respuesta"></textarea>
     </div>
     <button type="submit" class="btn btn-primary mt-2">Enviar</button>
     <button class="btn btn-danger mt-2 ms-3 exit">Cancelar</button>`;
