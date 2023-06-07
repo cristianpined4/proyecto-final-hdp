@@ -1,48 +1,50 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Blog - Perfil de Usuario</title>
-  <!-- Enlace a los archivos de Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <style>
-    .profile-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .profile-picture {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    .activity-box {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 10px;
-    }
-    .rounded-input {
-      border-radius: 20px;
-    }
-    .rounded-button {
-      border-radius: 20px;
-    }
-  </style>
-</head>
-<body>
+<style>
+  .profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
 
-  <!-- Contenido principal -->
-  <div class="container mt-4 profile-container">
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .activity-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .rounded-input {
+    border-radius: 20px;
+  }
+
+  .rounded-button {
+    border-radius: 20px;
+  }
+
+  #app .card .card-body div.form-group .error {
+    color: #ff3000;
+    margin-top: -1rem;
+    margin-left: 1rem;
+    font-size: 0.8rem;
+  }
+</style>
+<!-- Contenido principal -->
+<div class="container my-4 profile-container card">
+  <div class="card-body">
     <div class="row">
       <div class="col-md-4">
         <div class="d-flex justify-content-center">
-          <div>
-            <img src="ruta-a-tu-foto-de-perfil" alt="Foto de perfil" class="profile-picture">
+          <div class="my-4 d-flex justify-content-center align-items-center flex-column">
+            <img src="https://www.w3schools.com/w3css/img_avatar2.png" alt="Foto de perfil" class="profile-picture">
             <button type="button" class="btn btn-primary btn-block mt-3">Cambiar foto de perfil</button>
           </div>
         </div>
@@ -54,83 +56,56 @@
             <li class="list-group-item">Número de posts realizados: <span id="numPosts">0</span></li>
             <li class="list-group-item">Número de comentarios: <span id="numComments">0</span></li>
             <li class="list-group-item">Fecha de registro: <span id="registrationDate">01/01/2023</span></li>
-            <li class="list-group-item">Última vez conectado: <span id="lastLoginDate">30/05/2023</span></li>
+            <li class="list-group-item">Última vez conectado: <span id="lastLoginDate">Hoy</span></li>
           </ul>
         </div>
       </div>
       <div class="col-md-12 mt-4">
         <h1>Perfil de Usuario</h1>
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="firstName">Nombre:</label>
-                  <input type="text" class="form-control rounded-input" id="firstName" placeholder="Ingresa tu nombre">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="lastName">Apellido:</label>
-                  <input type="text" class="form-control rounded-input" id="lastName" placeholder="Ingresa tu apellido">
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="phone">Teléfono:</label>
-                  <input type="text" class="form-control rounded-input" id="phone" placeholder="Ingresa tu teléfono">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="mobile">Móvil:</label>
-                  <input type="text" class="form-control rounded-input" id="mobile" placeholder="Ingresa tu móvil">
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="email">Correo electrónico:</label>
-                  <input type="email" class="form-control rounded-input" id="email" placeholder="Ingresa tu correo electrónico">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="city">Ciudad:</label>
-                  <input type="text" class="form-control rounded-input" id="city" placeholder="Ingresa tu ciudad">
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="currentPassword">Contraseña actual:</label>
-                  <input type="password" class="form-control rounded-input" id="currentPassword" placeholder="Ingresa tu contraseña actual">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="password">Nueva contraseña:</label>
-                  <input type="password" class="form-control rounded-input" id="password" placeholder="Ingresa tu nueva contraseña">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="confirmPassword">Verificar nueva contraseña:</label>
-                <input type="password" class="form-control rounded-input" id="confirmPassword" placeholder="Verifica tu nueva contraseña">
-              </div>
-              <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary rounded-button">Guardar cambios</button>
-                <button type="button" class="btn btn-secondary rounded-button" onclick="limpiarFormulario()">Limpiar</button>
-              </div>
+        <form data-user>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="firstName">Nombre:</label>
+              <input type="text" class="form-control rounded-input" name="firstName" placeholder="Ingresa tu nombre">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName">Apellido:</label>
+              <input type="text" class="form-control rounded-input" name="lastName" placeholder="Ingresa tu apellido">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="email">Correo electrónico:</label>
+              <input type="email" class="form-control rounded-input" name="email"
+                placeholder="Ingresa tu correo electrónico">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="username">Usuario:</label>
+              <input type="text" class="form-control rounded-input" name="username" placeholder="Ingresa tu usuario">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="currentPassword">Contraseña actual:</label>
+              <input type="password" class="form-control rounded-input" name="currentPassword"
+                placeholder="Ingresa tu contraseña actual">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="password">Nueva contraseña:</label>
+              <input type="password" class="form-control rounded-input" name="password"
+                placeholder="Ingresa tu nueva contraseña">
+            </div>
+            <div class="form-group offset-md-6 col-md-6">
+              <label for="confirmPassword">Verificar nueva contraseña:</label>
+              <input type="password" class="form-control rounded-input" name="confirmPassword"
+                placeholder="Verifica tu nueva contraseña">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary rounded-button">Guardar cambios</button>
+          </div>
         </form>
       </div>
     </div>
   </div>
-
-  <!-- Scripts de Bootstrap -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-  <script>
-    function limpiarFormulario() {
-      document.getElementById("firstName").value = "";
-      document.getElementById("lastName").value = "";
-      document.getElementById("phone").value = "";
-      document.getElementById("mobile").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("city").value = "";
-      document.getElementById("currentPassword").value = "";
-      document.getElementById("password").value = "";
-      document.getElementById("confirmPassword").value = "";
-    }
-  </script>
-</body>
-</html>
+</div>
