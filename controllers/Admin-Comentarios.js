@@ -1,5 +1,5 @@
 import Post from "../models/Post.js";
-import Comentario from "../models/comentarios.js";
+import Comentario from "../models/Comentarios.js";
 
 let currentUser = JSON.parse(localStorage.getItem("current-user")) || null;
 if (currentUser != null) {
