@@ -1,4 +1,4 @@
-<style>
+﻿<style>
   nav.navbar,
   footer {
     display: none !important;
@@ -112,11 +112,20 @@
       <div class="card-body">
         <h1>Gestionar los comentarios</h1>
         <p>Lista de comentarios por post
-        <div class="d-flex justify-content-between text-center align-items-center">
-          <h5>Estados: </h5>
-          <div class="bg-danger text-white w-25 px-2 py-1">Rechazado</div>
-          <div class="bg-warning text-white w-25 px-2 py-1">Pendiente</div>
-          <div class="bg-success text-white w-25 px-2 py-1">Aprobado</div>
+        <div class="d-flex justify-content-between text-center align-items-center flex-wrap" data-estadisticas>
+          <h5>Estado: </h5>
+          <div class="bg-danger text-white px-4 py-1 mb-2">
+            Rechazado
+            <span class="badge badge-light rounded-circle ms-2" data-rechazados>0</span>
+          </div>
+          <div class="bg-warning text-white px-4 py-1 mb-2">
+            Pendiente
+            <span class="badge badge-light rounded-circle ms-2" data-pendientes>0</span>
+          </div>
+          <div class="bg-success text-white px-4 py-1 mb-2">
+            Aprobado
+            <span class="badge badge-light rounded-circle ms-2" data-aprobados>0</span>
+          </div>
         </div>
         </p>
         <div class="accordion accordion-borderless my-3" id="ListasPostComentarios"></div>

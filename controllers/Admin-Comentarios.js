@@ -126,6 +126,24 @@ const renderComentarios = (id) => {
       }
     });
   });
+  let aceptados = new Comentario()
+      .all()
+      .filter((el) => el.status == "aceptado").length,
+    rechazados = new Comentario()
+      .all()
+      .filter((el) => el.status == "rechazado").length,
+    pendientes = new Comentario()
+      .all()
+      .filter((el) => el.status == "pendiente").length;
+  document.querySelector(
+    ".main-content div[data-estadisticas] span[data-rechazados]"
+  ).innerHTML = rechazados;
+  document.querySelector(
+    ".main-content div[data-estadisticas] span[data-aprobados]"
+  ).innerHTML = aceptados;
+  document.querySelector(
+    ".main-content div[data-estadisticas] span[data-pendientes]"
+  ).innerHTML = pendientes;
   return html;
 };
 
