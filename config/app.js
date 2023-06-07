@@ -2,7 +2,12 @@ import Usuarios from "../models/Usuarios.js";
 import Post from "../models/Post.js";
 import Router from "./Router.js";
 
-let rutasProtegidas = ["Admin"];
+let rutasProtegidas = [
+  "Admin",
+  "Admin-Comentarios",
+  "Admin-Usuarios",
+  "Admin-Posts",
+];
 
 document.addEventListener("DOMContentLoaded", () => {
   let usuarios = new Usuarios();
@@ -80,8 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(container).innerHTML = md;
       if (document.querySelector(`${navLink}[href="?view=${doc}"]`) != null) {
         document
-          .querySelector(`${navLink}[href="?view=${doc}"]`)
-          .classList.add("active");
+          .querySelectorAll(`${navLink}[href="?view=${doc}"]`)
+          .forEach((el) => el.classList.add("active"));
       }
       document.title = `${doc} - ${title}`;
 
@@ -102,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("click", (e) => {
-  if (e.target.matches("nav ul li a[data-logout]")) {
+  if (e.target.matches("nav ul li a[data-logout],.sidebar a[data-logout]")) {
     localStorage.removeItem("current-user");
     let route = new Router();
     route.GoTo("?view=Login");

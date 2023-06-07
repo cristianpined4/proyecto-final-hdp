@@ -69,6 +69,15 @@
     color: #555;
   }
 
+  .main-content .card.bg-danger h6>*,
+  .main-content .card.bg-danger p,
+  .main-content .card.bg-warning h6>*,
+  .main-content .card.bg-warning p,
+  .main-content .card.bg-success h6>*,
+  .main-content .card.bg-success p {
+    color: #fff !important;
+  }
+
   @media (max-width: 768px) {
     .main-content {
       flex-direction: column;
@@ -101,9 +110,19 @@
   <div class="main-content">
     <div class="card">
       <div class="card-body">
-        <h1>Bienvenido al panel de administración</h1>
-        <p>Aquí puedes gestionar Usuarios, Post y Comentarios.</p>
+        <h1>Gestionar los comentarios</h1>
+        <p>Lista de comentarios por post
+        <div class="d-flex justify-content-between text-center align-items-center">
+          <h5>Estados: </h5>
+          <div class="bg-danger text-white w-25 px-2 py-1">Rechazado</div>
+          <div class="bg-warning text-white w-25 px-2 py-1">Pendiente</div>
+          <div class="bg-success text-white w-25 px-2 py-1">Aprobado</div>
+        </div>
+        </p>
+        <div class="accordion accordion-borderless my-3" id="ListasPostComentarios"></div>
+        <nav class="my-4 d-flex justify-content-center">
+          <ul class="pagination pagination-circle" id="pagination"></ul>
+        </nav>
       </div>
     </div>
   </div>
-</div>
