@@ -6,6 +6,18 @@ if (currentUser != null) {
   document.querySelector("h5[data-username]").innerHTML = currentUser.name;
 }
 
+document.addEventListener("click", (e) => {
+  if (
+    e.target.matches("button.navbar-toggler") ||
+    e.target.matches("button.navbar-toggler *") ||
+    e.target.matches("div.sidebar .menu") ||
+    e.target.matches("div.sidebar .menu *")
+  ) {
+    let navbar = document.querySelector("div.sidebar");
+    navbar.classList.toggle("d-none");
+  }
+});
+
 let post = new Post(),
   currentPage = 1,
   itemsPerPage = 10;
@@ -34,6 +46,15 @@ const renderComentarios = (id) => {
         moment(b.create_date, "DD/MM/YYYY h:mm:ss a").unix() -
         moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
     );
+  if (comentarios.length == 0) {
+    html += `
+      <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+          No hay comentarios para este post
+        </div>
+      </div>
+      `;
+  }
   comentarios.forEach((el) => {
     if (el.padre == "null") {
       let autor = el.findRelated("usuarios", "id", el.id_usuario)[0];
@@ -45,7 +66,7 @@ const renderComentarios = (id) => {
             : el.status == "rechazado"
             ? "bg-danger"
             : "bg-success"
-        }" style="height:130px">
+        }" style="height:auto">
           <div class="card-body">
             <h6 class="mt-0 d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted mb-2">
@@ -57,22 +78,39 @@ const renderComentarios = (id) => {
                 ${date_post}
               </small>
             </h6>
-            <div class="d-flex justify-content-between align-items-center">
-              <p>${el.comentario}</p>
+            <p>${el.comentario}</p> 
+            <div class="d-flex justify-content-end align-items-center">
               <div class="d-flex justify-content-between align-items-center">
                 ${
                   el.status != "aceptado"
-                    ? `<button class="btn btn-sm btn-success" data-id="${el.id}"><i class="fa-sharp fa-solid fa-circle-check"></i></button>`
+                    ? `<button class="btn btn-sm btn-success" data-id="${el.id}" title="Aprobar Comentario"><i class="fa-sharp fa-solid fa-circle-check"></i></button>`
                     : ""
                 }
                 ${
                   el.status != "rechazado"
-                    ? `<button class="btn btn-sm btn-danger ms-2" data-id="${el.id}"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button>`
+                    ? `<button class="btn btn-sm btn-danger ms-2" data-id="${el.id}" title="Rechazar Comentario"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button>`
                     : ""
                 }
                 <button class="btn btn-sm btn-secondary ms-2" data-id="${
                   el.id
-                }"><i class="fa-solid fa-trash"></i></button>
+                }" title="Eliminar Comentario"><i class="fa-solid fa-trash"></i></button>
+                ${
+                  autor.rol == "admin"
+                    ? ""
+                    : `<button class="btn btn-sm btn-info ms-2" data-id="${
+                        el.id
+                      }" title="${
+                        autor.status == "activo"
+                          ? "Silenciar Usuario"
+                          : "Desilenciar Usuario"
+                      }">
+                  <i class="fa-solid ${
+                    autor.status == "activo"
+                      ? "fa-head-side-cough"
+                      : "fa-head-side-cough-slash"
+                  }"></i>
+                </button>`
+                }
               </div>
             </div>
           </div>
@@ -91,7 +129,7 @@ const renderComentarios = (id) => {
             : el2.status == "rechazado"
             ? "bg-danger"
             : "bg-success"
-        }" style="height:130px">
+        }" style="height:auto">
           <div class="card-body">
             <h6 class="mt-0 d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted mb-2">
@@ -103,8 +141,8 @@ const renderComentarios = (id) => {
                 ${date_post}
               </small>
             </h6>
-            <div class="d-flex justify-content-between align-items-center">
-              <p>${el2.comentario}</p>
+            <p>${el2.comentario}</p>
+            <div class="d-flex justify-content-end align-items-center">
               <div class="d-flex justify-content-between align-items-center">
                  ${
                    el2.status != "aceptado"
@@ -119,6 +157,23 @@ const renderComentarios = (id) => {
                 <button class="btn btn-sm btn-secondary ms-2" data-id="${
                   el2.id
                 }"><i class="fa-solid fa-trash"></i></button>
+                ${
+                  autor2.rol == "admin"
+                    ? ""
+                    : `<button class="btn btn-sm btn-info ms-2" data-id="${
+                        el2.id
+                      }" title="${
+                        autor2.status == "activo"
+                          ? "Silenciar Usuario"
+                          : "Desilenciar Usuario"
+                      }">
+                  <i class="fa-solid ${
+                    autor2.status == "activo"
+                      ? "fa-head-side-cough"
+                      : "fa-head-side-cough-slash"
+                  }"></i>
+                </button>`
+                }
               </div>
             </div>
           </div>
@@ -152,6 +207,15 @@ const renderPost = (post) => {
     endIndex = startIndex + itemsPerPage,
     paginatedData = post.slice(startIndex, endIndex),
     html = "";
+  if (post.length == 0) {
+    html += `
+      <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+          No hay publicaciones
+        </div>
+      </div>
+      `;
+  }
   post.some((el, index) => {
     let numero = new Post()
       .findById(el.id)
@@ -253,26 +317,61 @@ document.addEventListener("click", (e) => {
     e.target.matches("#ListasPostComentarios button.btn-secondary") ||
     e.target.matches("#ListasPostComentarios button.btn-secondary > *")
   ) {
-    let id = e.target.dataset.id || e.target.parentElement.dataset.id,
-      comentario = new Comentario().findById(id),
-      padre = comentario.padre;
+    if (confirm("¿Desea eliminar este comentario?")) {
+      let id = e.target.dataset.id || e.target.parentElement.dataset.id,
+        comentario = new Comentario().findById(id),
+        padre = comentario.padre;
 
-    if (padre == "null") {
-      let comentariosHijos = comentario.findRelated("comentarios", "padre", id);
-      comentariosHijos.forEach((el) => {
-        el.delete();
-      });
+      if (padre == "null") {
+        let comentariosHijos = comentario.findRelated(
+          "comentarios",
+          "padre",
+          id
+        );
+        comentariosHijos.forEach((el) => {
+          el.delete();
+        });
+      }
+      comentario.delete();
+      document.querySelector(
+        `#ListasPostComentarios #flush-collapseThreeX-${comentario.id_post} .accordion-body`
+      ).innerHTML = renderComentarios(comentario.id_post);
+      let numero = new Post()
+        .findById(comentario.id_post)
+        .findRelated("comentarios", "id_post", comentario.id_post)
+        .filter((lis) => lis.status == "pendiente").length;
+      document.querySelector(
+        `#q${comentario.id_post} span.badge.bg-danger.rounded-circle`
+      ).innerHTML = numero;
     }
-    comentario.delete();
-    document.querySelector(
-      `#ListasPostComentarios #flush-collapseThreeX-${comentario.id_post} .accordion-body`
-    ).innerHTML = renderComentarios(comentario.id_post);
-    let numero = new Post()
-      .findById(comentario.id_post)
-      .findRelated("comentarios", "id_post", comentario.id_post)
-      .filter((lis) => lis.status == "pendiente").length;
-    document.querySelector(
-      `#q${comentario.id_post} span.badge.bg-danger.rounded-circle`
-    ).innerHTML = numero;
+  }
+  if (
+    e.target.matches("#ListasPostComentarios button.btn-info") ||
+    e.target.matches("#ListasPostComentarios button.btn-info > *")
+  ) {
+    if (confirm("¿Desea cambiar el estado del usuario?")) {
+      let id = e.target.dataset.id || e.target.parentElement.dataset.id,
+        comentario = new Comentario().findById(id),
+        usuario = comentario.findRelated(
+          "usuarios",
+          "id",
+          comentario.id_usuario
+        )[0];
+      usuario.status = usuario.status == "activo" ? "silenciado" : "activo";
+      usuario.update();
+      document.querySelector(
+        `#ListasPostComentarios #flush-collapseThreeX-${comentario.id_post} .accordion-body`
+      ).innerHTML = renderComentarios(comentario.id_post);
+      let numero = new Post()
+        .findById(comentario.id_post)
+        .findRelated("comentarios", "id_post", comentario.id_post)
+        .filter((lis) => lis.status == "pendiente").length;
+      document.querySelector(
+        `#q${comentario.id_post} span.badge.bg-danger.rounded-circle`
+      ).innerHTML = numero;
+      if (currentUser.id == usuario.id) {
+        localStorage.setItem("current-user", JSON.stringify(usuario));
+      }
+    }
   }
 });

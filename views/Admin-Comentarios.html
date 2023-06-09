@@ -12,8 +12,8 @@
     height: 100vh;
   }
 
-  nav ul li:has(a.active),
-  nav ul li:hover {
+  .sidebar nav ul li:has(a.active),
+  .sidebar nav ul li:hover {
     background-color: #242424;
     cursor: pointer;
   }
@@ -52,7 +52,7 @@
   }
 
   .main-content {
-    flex: 1 1 0;
+    flex: 1;
     padding: 1rem;
   }
 
@@ -80,17 +80,24 @@
 
   @media (max-width: 768px) {
     .main-content {
-      flex-direction: column;
+      padding: 0;
     }
 
     .sidebar {
       width: 100%;
+      position: absolute;
+      z-index: 10000;
     }
   }
 </style>
 
 <div class="container">
-  <div class="sidebar">
+  <div class="sidebar d-none d-md-block">
+    <div class="w-100 d-md-none d-flex justify-content-end">
+      <button class="menu btn btn-danger btn-sm rounded-5">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
     <h4 class="text-center my-3">Panel de Administración</h4>
     <div class="d-flex justify-content-between text-center align-items-center flex-column">
       <img src="https://www.w3schools.com/w3css/img_avatar2.png" class="img-fluid rounded-circle w-25">
@@ -108,10 +115,15 @@
     </nav>
   </div>
   <div class="main-content">
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark d-block d-md-none">
+      <button class="navbar-toggler menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
     <div class="card">
       <div class="card-body">
         <h1>Gestionar los comentarios</h1>
-        <p>Lista de comentarios por post
+        <p>Lista de comentarios por post</p>
         <div class="d-flex justify-content-between text-center align-items-center flex-wrap" data-estadisticas>
           <h5>Estado: </h5>
           <div class="bg-danger text-white px-4 py-1 mb-2">
@@ -127,7 +139,6 @@
             <span class="badge badge-light rounded-circle ms-2" data-aprobados>0</span>
           </div>
         </div>
-        </p>
         <div class="accordion accordion-borderless my-3" id="ListasPostComentarios"></div>
         <nav class="my-4 d-flex justify-content-center">
           <ul class="pagination pagination-circle" id="pagination"></ul>

@@ -6,7 +6,7 @@ class Usuarios extends Model {
   password = ""; // contrasena
   email = ""; // email
   name = ""; // nombre
-  status = "activo"; // activo o bloqueado
+  status = "activo"; // activo o silenciado
   rol = "usuario"; // usuario o admin
   create_date = moment().format("DD/MM/YYYY h:mm:ss a");
 }

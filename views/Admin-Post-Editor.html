@@ -69,6 +69,16 @@
     color: #555;
   }
 
+  #app .card .card-body div.form-group .error {
+    background-color: #e0411d;
+    color: #fff !important;
+    padding: 0.1rem 1rem;
+    margin-top: -1.1rem;
+    font-size: 0.8rem;
+    border-radius: 0px 0px 15px 15px;
+    text-align: center;
+  }
+
   @media (max-width: 768px) {
     .main-content {
       padding: 0;
@@ -113,8 +123,32 @@
     </div>
     <div class="card">
       <div class="card-body">
-        <h1>Bienvenido al panel de administración</h1>
-        <p>Aquí puedes gestionar Usuarios, Post y Comentarios.</p>
+        <form id="editor" class="my-3">
+          <div class="row">
+            <div class="col-md-4">
+              <h1>Crear Post</h1>
+            </div>
+            <div class="col-md-8 d-flex justify-content-between align-items-center">
+              <div class="form-group w-100">
+                <select name="status" class="form-control">
+                  <option>Selecione un estado</option>
+                  <option value="borrador" selected>Borrador</option>
+                  <option value="publicado">Publicado</option>
+                  <option value="privado">Privado</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary ms-3">Guardar</button>
+            </div>
+          </div>
+          <div class="form-group my-2">
+            <input type="text" class="form-control" name="titulo" placeholder="Título del post">
+          </div>
+          <div class="form-group my-2">
+            <input type="text" class="form-control" name="imagenUrl" placeholder="Url de la imagen de portada">
+          </div>
+          <div class="form-group my-2">
+            <textarea class="form-control" name="contenido" rows="15" placeholder="Contenido del post"></textarea>
+        </form>
       </div>
     </div>
   </div>

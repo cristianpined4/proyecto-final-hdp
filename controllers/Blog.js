@@ -2,8 +2,14 @@ import slideResponsive from "../config/slideResponsive.js";
 import Post from "../models/Post.js";
 import Usuarios from "../models/Usuarios.js";
 
-const stripHtmlTags = (text) => {
-  return text.replace(/<[^>]+>/g, "");
+const stripHtmlTags = (str) => {
+  if (str === null || str === "") return false;
+  else str = str.toString();
+
+  // Regular expression to identify HTML tags in
+  // the input string. Replacing the identified
+  // HTML tag with a null string.
+  return str.replace(/(<([^>]+)>)/gi, "").substring(0, 20);
 };
 
 let post = new Post(),
@@ -11,6 +17,13 @@ let post = new Post(),
   html = "",
   currentPage = 1,
   itemsPerPage = 9;
+
+let currentUser = JSON.parse(localStorage.getItem("current-user")) || null;
+if (currentUser != null) {
+  if (currentUser.rol == "admin") {
+    posts = post.all().filter((el) => el.status != "borrador");
+  }
+}
 
 posts = posts.sort(
   (a, b) =>
@@ -54,9 +67,7 @@ const renderPosts = () => {
                 ${date}
               </small>
             </p>
-            <p class="card-text">${stripHtmlTags(
-              el.contenido.substring(0, 20)
-            )}...</p>
+            <p class="card-text">${stripHtmlTags(el.contenido)}...</p>
             <a href="?view=Post&post_id=${
               el.id
             }" class="btn btn-primary">Ver más</a>

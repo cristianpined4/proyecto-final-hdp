@@ -16,6 +16,15 @@ if (post == null) {
   routes.GoTo("?view=error");
 }
 
+let currentUser = JSON.parse(localStorage.getItem("current-user")) || null;
+if (currentUser != null) {
+  if (currentUser.rol != "admin") {
+    if (post.status != "publicado") {
+      routes.GoTo("?view=error");
+    }
+  }
+}
+
 document.title = document.title.replace("Post", post.titulo);
 
 const $slider = document.querySelector("#slider");
@@ -138,7 +147,7 @@ if (currentUsuario == null) {
     .forEach((el) => (el.style.display = "none"));
 }
 if (currentUsuario != null) {
-  if (currentUsuario.status == "bloqueado") {
+  if (currentUsuario.status == "silenciado") {
     $formComentario.innerHTML = `
     <div class="alert alert-danger my-3 role="alert">
       Tu cuenta esta silenciada, no puedes comentar.
@@ -313,6 +322,3 @@ document.addEventListener("click", (e) => {
     );
   }
 });
-
-// Esta linea activa el edictor pero es para el apartado de administrador en el que se puede editar el post
-/* new FroalaEditor("textarea[name='comentario']", { language: "es" }); */
