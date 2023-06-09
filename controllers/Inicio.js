@@ -35,7 +35,7 @@ posts.some((el, index) => {
         <img src="${el.imagenUrl}" alt=""> 
         <span>
             <h3>${el.titulo}</h3>
-            <p>${stripHtmlTags(el.contenido.substring(0, 20))}...</p>
+            <p>${stripHtmlTags(el.contenido)}...</p>
         </span>
     </div>
     `;

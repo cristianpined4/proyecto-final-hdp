@@ -31,9 +31,11 @@ posts = posts.sort(
     moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
 );
 
+let imagenHeader = posts[0].imagenUrl || "./assets/525105-Among-Trees.png";
+
 html += `
   <div>
-      <img src="${posts[0].imagenUrl}" alt=""> 
+      <img src="${imagenHeader}" alt=""> 
       <span>
           <h2>Blog</h2>
       </span>
