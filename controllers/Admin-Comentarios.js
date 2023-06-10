@@ -66,7 +66,7 @@ const renderComentarios = (id) => {
             : el.status == "rechazado"
             ? "bg-danger"
             : "bg-success"
-        }" style="height:auto">
+        }">
           <div class="card-body">
             <h6 class="mt-0 d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted mb-2">
@@ -129,7 +129,7 @@ const renderComentarios = (id) => {
             : el2.status == "rechazado"
             ? "bg-danger"
             : "bg-success"
-        }" style="height:auto">
+        }">
           <div class="card-body">
             <h6 class="mt-0 d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted mb-2">

@@ -32,7 +32,7 @@ if (id != null) {
     document.querySelector("input[name=imagenUrl]").value = post.imagenUrl;
   } else {
     document.querySelector("#editor").innerHTML = `
-      <div class="d-flex justify-content-center align-items-center flex-column" style="height: 50vh;">
+      <div class="d-flex justify-content-center align-items-center flex-column">
         <div class="alert alert-danger w-100" role="alert">
           <h4 class="alert-heading">Error!</h4>
           <p>El post no existe</p>

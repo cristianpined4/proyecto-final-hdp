@@ -31,7 +31,7 @@ const renderPost = (post) => {
   }
   post.some((el, index) => {
     html += `
-      <div class="card mb-3 h-25">
+      <div class="card mb-3">
       <div class="card-body d-flex justify-content-between align-items-center border-bottom border-dark">
         <div class="info">
             <h5 class="card-title">${el.titulo} ${
