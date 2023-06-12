@@ -1,0 +1,50 @@
+<style>
+  .navbar {
+    z-index: 999;
+    box-shadow: none;
+  }
+
+  .navbar.bg-dark {
+    background-color: transparent !important;
+  }
+
+  .navbar:has(.navbar-collapse.collapse.show) {
+    background-color: rgb(51, 45, 45) !important;
+  }
+
+  #app {
+    margin-top: -5rem;
+  }
+
+  .slider .slider-slides {
+    height: 450px;
+  }
+
+  .slider .slider-slides .slider-slide div .caption {
+    z-index: 0;
+  }
+
+  .mt--5 {
+    margin-top: -4rem !important;
+    margin-bottom: 1rem !important;
+    z-index: 99;
+  }
+
+  #last-post .col-12 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  #last-post .card img {
+    height: 300px;
+  }
+</style>
+
+<div id="slider"></div>
+<div class="container mt--5">
+  <div class="row">
+    <div class="col-md-12 card px-5 pt-5">
+      <h1 class="text-center mt-2 mb-5">Resultados de busqueda de: <span class="query"></span></h1>
+      <div class="row mb-4" id="resultados"></div>
+    </div>
+  </div>
+</div>
