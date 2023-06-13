@@ -123,6 +123,11 @@ document.addEventListener("submit", (e) => {
     post.status = status;
     post.imagenUrl = imagenUrl;
     post.save();
+    if (id == null) {
+      alert("Post creado correctamente");
+    } else {
+      alert("Post editado correctamente");
+    }
     router.GoTo("?view=Admin-Post");
   }
 });

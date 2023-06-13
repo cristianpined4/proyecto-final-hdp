@@ -293,6 +293,7 @@ document.addEventListener("click", (e) => {
     document.querySelector(
       `#q${comentario.id_post} button span.badge.bg-danger.rounded-circle`
     ).innerHTML = numero;
+    alert("Se ha aceptado el comentario correctamente");
   }
   if (
     e.target.matches("#ListasPostComentarios button.btn-danger") ||
@@ -312,6 +313,7 @@ document.addEventListener("click", (e) => {
     document.querySelector(
       `#q${comentario.id_post} span.badge.bg-danger.rounded-circle`
     ).innerHTML = numero;
+    alert("Se ha rechazado el comentario correctamente");
   }
   if (
     e.target.matches("#ListasPostComentarios button.btn-secondary") ||
@@ -343,6 +345,7 @@ document.addEventListener("click", (e) => {
       document.querySelector(
         `#q${comentario.id_post} span.badge.bg-danger.rounded-circle`
       ).innerHTML = numero;
+      alert("Se ha eliminado el comentario correctamente");
     }
   }
   if (
@@ -372,6 +375,7 @@ document.addEventListener("click", (e) => {
       if (currentUser.id == usuario.id) {
         localStorage.setItem("current-user", JSON.stringify(usuario));
       }
+      alert("Se ha cambiado el estado del usuario a " + usuario.status);
     }
   }
 });

@@ -129,6 +129,7 @@ document.addEventListener("click", (e) => {
     if (confirm("¿Estás seguro de eliminar esta publicación?")) {
       let del = new Post().findById(id);
       del.delete();
+      alert("Publicación eliminada correctamente");
       renderPost(
         del
           .all()
