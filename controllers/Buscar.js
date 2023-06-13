@@ -10,7 +10,7 @@ const stripHtmlTags = (str) => {
   // Regular expression to identify HTML tags in
   // the input string. Replacing the identified
   // HTML tag with a null string.
-  return str.replace(/(<([^>]+)>)/gi, "").substring(0, 20);
+  return str.replace(/(<([^>]+)>)/gi, "").substring(0, 100);
 };
 
 let post = new Post(),

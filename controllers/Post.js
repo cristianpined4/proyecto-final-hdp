@@ -50,15 +50,16 @@ let comentarios = new Comentarios()
   );
 
 let date = moment(post.create_date, "DD/MM/YYYY h:mm:ss a").format(
-  "dddd DD/MMMM/YYYY h:mm:ss a"
+  "dddd LL, h:mm:ss a"
 );
 
 const $post = document.querySelector(".card.post");
-$post.querySelector("img").src = post.imagenUrl;
-$post.querySelector("img").alt = post.titulo;
+$post.querySelector(
+  ".imagen"
+).style.background = `url(${post.imagenUrl}) center center / cover no-repeat`;
 $post.querySelector(".card-title").innerHTML = post.titulo;
 $post.querySelector(".card-text").innerHTML = `
-<p class="d-flex justify-content-between align-items-center-md flex-column flex-md-row my-3">
+<p class="d-flex justify-content-between align-items-center-md flex-column flex-md-row mt-4 mb-5">
   <small class="text-muted">
     <i class="fas fa-user me-1"></i> 
     ${autor.name}
