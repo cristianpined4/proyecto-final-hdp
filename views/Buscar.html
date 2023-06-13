@@ -17,7 +17,7 @@
   }
 
   .slider .slider-slides {
-    height: 450px;
+    height: 300px;
   }
 
   .slider .slider-slides .slider-slide div .caption {
@@ -34,7 +34,7 @@
     margin-bottom: 1.5rem !important;
   }
 
-  #last-post .card img {
+  #resultados .card img {
     height: 300px;
   }
 </style>
@@ -43,8 +43,11 @@
 <div class="container mt--5">
   <div class="row">
     <div class="col-md-12 card px-5 pt-5">
-      <h1 class="text-center mt-2 mb-5">Resultados de busqueda de: <span class="query"></span></h1>
+      <h1 class="text-center mt-2 mb-5"></h1>
       <div class="row mb-4" id="resultados"></div>
+      <nav class="my-3 d-block" style="margin: 2rem auto;">
+        <ul class="pagination pagination-circle pagination-lg" id="pagination"></ul>
+      </nav>
     </div>
   </div>
 </div>

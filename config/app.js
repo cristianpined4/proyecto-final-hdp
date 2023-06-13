@@ -112,4 +112,21 @@ document.addEventListener("click", (e) => {
     let route = new Router();
     route.GoTo("?view=Login");
   }
+
+  if (
+    e.target.matches("ul.buttonBuscar li button") ||
+    e.target.matches("ul.buttonBuscar li button *")
+  ) {
+    document.querySelector("ul.buttonBuscar").classList.add("d-md-none");
+    document.querySelector("#search-form").classList.remove("d-md-none");
+  }
+});
+
+document.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (e.target.matches("#search-form")) {
+    let search = e.target.querySelector("input").value;
+    let route = new Router();
+    route.GoTo(`?view=Buscar&query=${search}`);
+  }
 });
