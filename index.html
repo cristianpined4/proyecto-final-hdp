@@ -24,6 +24,41 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sceditor@3.2.0/minified/themes/modern.min.css" />
   <style>
+    /* Works on Firefox */
+    * {
+      scrollbar-color: rgb(187, 187, 187) rgb(241, 242, 243);
+      scrollbar-width: thin;
+    }
+
+    /* Works on Chrome, Edge, and Safari */
+    *::-webkit-scrollbar:vertical {
+      width: 10px;
+    }
+
+    *::-webkit-scrollbar-button:increment,
+    *::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    *::-webkit-scrollbar-button:increment,
+    *::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    *::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
+
+    *::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background-color: #bbb;
+      border-radius: 20px;
+      border: 2px solid #f1f2f3;
+    }
+
     body {
       background-color: #e6e7e9;
     }

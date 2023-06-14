@@ -1,5 +1,5 @@
 /*!
- * Route 1.0.2
+ * Route 1.0.2 - Router for JavaScript applications
  * Copyright 2021 - Cristian Pineda <cristian.pineda.1997@outlook.com>
  * Licensed under MIT
  */

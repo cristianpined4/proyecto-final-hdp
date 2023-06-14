@@ -100,7 +100,7 @@
         <li><a href="?view=Admin">Inicio</a></li>
         <li><a href="?view=Admin-Post">Gestionar Post</a></li>
         <li><a href="?view=Admin-Usuarios">Gestionar Usuarios</a></li>
-        <li><a href="?view=Admin-Comentarios">Gestionar Comentarios</a></li>
+        <li><a href="?view=Admin-Comentarios">Gestionar Comentarios<span></span></a></li>
         <li><a href="?view=Inicio">Volver al sitio</a></li>
       </ul>
     </nav>
@@ -118,63 +118,69 @@
 
         <div class="row my-4 justify-content-center">
           <div class="col-md-6 mb-3">
-            <div class="card bg-info text-white text-center text-uppercase usuarios">
-              <div class="card-body p-3">
-                <h4 class="card-title my-4">Usuarios</h4>
-                <div class="card-text d-flex justify-content-between gap-2 my-2 flex-wrap flex-md-nowrap">
-                  <div class="w-100 bg-success border border-2 border-light rounded rounded-5 p-4 mb-2">
-                    <b>Activos</b><br>
-                    <span class="small" data-activos>0</span>
-                  </div>
-                  <div class="w-100 bg-danger border border-2 border-light rounded rounded-5 p-4 mb-2">
-                    <b>Silenciados</b><br>
-                    <span class="small" data-silenciados>0</span>
+            <a href="?view=Admin-Usuarios">
+              <div class="card bg-info text-white text-center text-uppercase usuarios">
+                <div class="card-body p-3">
+                  <h4 class="card-title my-4">Usuarios</h4>
+                  <div class="card-text d-flex justify-content-between gap-2 my-2 flex-wrap flex-md-nowrap">
+                    <div class="w-100 bg-success border border-2 border-light rounded rounded-5 p-4 mb-2">
+                      <b>Activos</b><br>
+                      <span class="small" data-activos>0</span>
+                    </div>
+                    <div class="w-100 bg-danger border border-2 border-light rounded rounded-5 p-4 mb-2">
+                      <b>Silenciados</b><br>
+                      <span class="small" data-silenciados>0</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
           <div class="col-md-6 mb-3">
-            <div class="card bg-primary text-white text-center text-uppercase posts">
-              <div class="card-body p-3">
-                <h4 class="card-title my-4">Publicaciones</h4>
-                <div class="card-text d-flex justify-content-between gap-2 my-2 flex-wrap flex-md-nowrap">
-                  <div class="w-100 bg-success border border-2 border-light rounded rounded-5 p-4 mb-2">
-                    <b>Publicados</b><br>
-                    <span class="small" data-publicados>0</span>
-                  </div>
-                  <div class="w-100 bg-danger border border-2 border-light rounded rounded-5 p-4 mb-2">
-                    <b>Privados</b><br>
-                    <span class="small" data-privados>0</span>
-                  </div>
-                  <div class="w-100 bg-info border border-2 border-light rounded rounded-5 p-4 mb-2">
-                    <b>Borradores</b><br>
-                    <span class="small" data-borradores>0</span>
+            <a href="?view=Admin-Post">
+              <div class="card bg-primary text-white text-center text-uppercase posts">
+                <div class="card-body p-3">
+                  <h4 class="card-title my-4">Publicaciones</h4>
+                  <div class="card-text d-flex justify-content-between gap-2 my-2 flex-wrap flex-md-nowrap">
+                    <div class="w-100 bg-success border border-2 border-light rounded rounded-5 p-4 mb-2">
+                      <b>Publicados</b><br>
+                      <span class="small" data-publicados>0</span>
+                    </div>
+                    <div class="w-100 bg-danger border border-2 border-light rounded rounded-5 p-4 mb-2">
+                      <b>Privados</b><br>
+                      <span class="small" data-privados>0</span>
+                    </div>
+                    <div class="w-100 bg-info border border-2 border-light rounded rounded-5 p-4 mb-2">
+                      <b>Borradores</b><br>
+                      <span class="small" data-borradores>0</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
-          <div class="col-md-6 mb-3">
-            <div class="card bg-dark text-white text-center text-uppercase comentarios">
-              <div class="card-body p-3">
-                <h4 class="card-title my-4">Comentarios</h4>
-                <div class="card-text d-flex justify-content-between gap-2 my-2 flex-wrap flex-md-nowrap">
-                  <div class="w-100 bg-success border border-2 border-light rounded rounded-5 p-4 mb-2">
-                    <b>Aprobados</b><br>
-                    <span class="small" data-aprobados>0</span>
-                  </div>
-                  <div class="w-100 bg-warning border border-2 border-light rounded rounded-5 p-4 mb-2">
-                    <b>Pendientes</b><br>
-                    <span class="small" data-pendientes>0</span>
-                  </div>
-                  <div class="w-100 bg-danger border border-2 border-light rounded rounded-5 p-4 mb-2">
-                    <b>Rechazados</b><br>
-                    <span class="small" data-rechazados>0</span>
+          <div class="col-md-8 mb-3">
+            <a href="?view=Admin-Comentarios">
+              <div class="card bg-dark text-white text-center text-uppercase comentarios">
+                <div class="card-body p-3">
+                  <h4 class="card-title my-4">Comentarios</h4>
+                  <div class="card-text d-flex justify-content-between gap-2 my-2 flex-wrap flex-md-nowrap">
+                    <div class="w-100 bg-success border border-2 border-light rounded rounded-5 p-4 mb-2">
+                      <b>Aprobados</b><br>
+                      <span class="small" data-aprobados>0</span>
+                    </div>
+                    <div class="w-100 bg-warning border border-2 border-light rounded rounded-5 p-4 mb-2">
+                      <b>Pendientes</b><br>
+                      <span class="small" data-pendientes>0</span>
+                    </div>
+                    <div class="w-100 bg-danger border border-2 border-light rounded rounded-5 p-4 mb-2">
+                      <b>Rechazados</b><br>
+                      <span class="small" data-rechazados>0</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

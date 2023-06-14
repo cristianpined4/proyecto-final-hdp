@@ -1,3 +1,4 @@
+import Comentarios from "../models/Comentarios.js";
 import Post from "../models/Post.js";
 
 let currentUser = JSON.parse(localStorage.getItem("current-user")) || null;
@@ -32,14 +33,14 @@ const renderPost = (post) => {
   post.some((el, index) => {
     html += `
       <div class="card mb-3">
-      <div class="card-body d-flex justify-content-between align-items-center border-bottom border-dark">
-        <div class="info">
-            <h5 class="card-title">${el.titulo} ${
+      <div class="card-body d-flex justify-content-between align-items-center border-bottom border-dark flex-wrap flex-md-nowrap">
+        <div class="info my-2">
+            <h5 class="card-title pe-2">${el.titulo} ${
       el.status != "publicado"
         ? ` - <span class="text-muted text-capitalize">${el.status}</span>`
         : ""
     }</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Creado: ${
+            <h6 class="card-subtitle my-2 text-muted">Creado: ${
               el.create_date
             }</h6>
         </div>
@@ -142,3 +143,27 @@ document.addEventListener("click", (e) => {
     }
   }
 });
+
+let comentarios = new Comentarios(),
+  pendientes = comentarios
+    .all()
+    .filter((comentario) => comentario.status == "pendiente");
+if (pendientes.length != 0) {
+  let span = document.querySelector(`a[href="?view=Admin-Comentarios"] span`);
+  span.classList.add(
+    "badge",
+    "bg-danger",
+    "rounded-pill",
+    "d-flex",
+    "justify-content-between",
+    "align-items-center"
+  );
+  span.style.width = "1.5rem";
+  span.style.height = "1.5rem";
+  span.innerHTML = pendientes.length;
+  span.parentElement.classList.add(
+    "d-flex",
+    "justify-content-between",
+    "align-items-center"
+  );
+}

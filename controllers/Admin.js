@@ -36,13 +36,11 @@ const posts = new Post(),
   card2 = document.querySelector(".card.posts");
 
 card2.querySelector("span[data-publicados]").innerHTML =
-  publicaciones.length == 1
-    ? "1 publicado"
-    : `${publicaciones.length} publicados`;
+  publicaciones.length == 1 ? "1 post" : `${publicaciones.length} posts`;
 card2.querySelector("span[data-borradores]").innerHTML =
-  borradores.length == 1 ? "1 borrador" : `${borradores.length} borradores`;
+  borradores.length == 1 ? "1 post" : `${borradores.length} posts`;
 card2.querySelector("span[data-privados]").innerHTML =
-  privados.length == 1 ? "1 privado" : `${privados.length} privados`;
+  privados.length == 1 ? "1 post" : `${privados.length} posts`;
 
 const comentarios = new Comentarios(),
   aprobados = comentarios
@@ -57,9 +55,28 @@ const comentarios = new Comentarios(),
   card3 = document.querySelector(".card.comentarios");
 
 card3.querySelector("span[data-aprobados]").innerHTML =
-  aprobados.length == 1 ? "1 aprobado" : `${aprobados.length} aprobados`;
+  aprobados.length == 1 ? "1 comentario" : `${aprobados.length} comentarios`;
 card3.querySelector("span[data-pendientes]").innerHTML =
-  pendientes.length == 1 ? "1 pendiente" : `${pendientes.length} pendientes`;
+  pendientes.length == 1 ? "1 comentario" : `${pendientes.length} comentarios`;
 card3.querySelector("span[data-rechazados]").innerHTML =
-  rechazados.length == 1 ? "1 rechazado" : `${rechazados.length} rechazados`;
+  rechazados.length == 1 ? "1 comentario" : `${rechazados.length} comentarios`;
 
+if (pendientes.length != 0) {
+  let span = document.querySelector(`a[href="?view=Admin-Comentarios"] span`);
+  span.classList.add(
+    "badge",
+    "bg-danger",
+    "rounded-pill",
+    "d-flex",
+    "justify-content-between",
+    "align-items-center"
+  );
+  span.style.width = "1.5rem";
+  span.style.height = "1.5rem";
+  span.innerHTML = pendientes.length;
+  span.parentElement.classList.add(
+    "d-flex",
+    "justify-content-between",
+    "align-items-center"
+  );
+}

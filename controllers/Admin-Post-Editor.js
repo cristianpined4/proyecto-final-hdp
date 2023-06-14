@@ -1,4 +1,5 @@
 import Router from "../config/Router.js";
+import Comentarios from "../models/Comentarios.js";
 import Post from "../models/Post.js";
 
 let currentUser = JSON.parse(localStorage.getItem("current-user")) || null;
@@ -131,3 +132,27 @@ document.addEventListener("submit", (e) => {
     router.GoTo("?view=Admin-Post");
   }
 });
+
+let comentarios = new Comentarios(),
+  pendientes = comentarios
+    .all()
+    .filter((comentario) => comentario.status == "pendiente");
+if (pendientes.length != 0) {
+  let span = document.querySelector(`a[href="?view=Admin-Comentarios"] span`);
+  span.classList.add(
+    "badge",
+    "bg-danger",
+    "rounded-pill",
+    "d-flex",
+    "justify-content-between",
+    "align-items-center"
+  );
+  span.style.width = "1.5rem";
+  span.style.height = "1.5rem";
+  span.innerHTML = pendientes.length;
+  span.parentElement.classList.add(
+    "d-flex",
+    "justify-content-between",
+    "align-items-center"
+  );
+}
