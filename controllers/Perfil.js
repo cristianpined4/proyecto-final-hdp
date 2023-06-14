@@ -36,7 +36,7 @@ let nComentarios = User.findRelated(
 document.getElementById("numPosts").innerHTML = nPosts;
 document.getElementById("numComments").innerHTML = nComentarios;
 document.getElementById("registrationDate").innerHTML = moment(
-  User.create_date
+  "DD/MM/YYYY h:mm:ss a",User.create_date
 ).format("DD/MM/YYYY");
 
 const form = document.querySelector("form[data-user]");
