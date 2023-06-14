@@ -5,7 +5,8 @@ let rutasProtegidas = [
   "Admin",
   "Admin-Comentarios",
   "Admin-Usuarios",
-  "Admin-Posts",
+  "Admin-Post",
+  "Admin-Post-Editor",
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
