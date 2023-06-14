@@ -103,6 +103,9 @@ document.addEventListener("submit", (e) => {
   if (e.target.matches("#search-form")) {
     let search = e.target.querySelector("input").value;
     let route = new Router();
+    if (search.trim() === "") {
+      return;
+    }
     route.GoTo(`?view=Buscar&query=${search}`);
   }
 });

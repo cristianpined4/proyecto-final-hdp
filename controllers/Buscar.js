@@ -102,7 +102,7 @@ const renderPosts = (post) => {
   });
   if (html == "")
     html = `<h3 class="text-center text-danger">No se encontraron resultados</h3>
-    <a href="?view=inicio" class="btn btn-outline-primary" style="display: block;margin: 2rem auto;width: auto;">Volver a inicio</a>`;
+    <a href="?view=Inicio" class="btn btn-outline-primary" style="display: block;margin: 2rem auto;width: auto;">Volver a inicio</a>`;
   document.querySelector("#resultados").innerHTML = html;
 };
 
