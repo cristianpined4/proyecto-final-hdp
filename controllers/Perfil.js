@@ -35,7 +35,10 @@ let nComentarios = User.findRelated(
 
 document.getElementById("numPosts").innerHTML = nPosts;
 document.getElementById("numComments").innerHTML = nComentarios;
-document.getElementById("registrationDate").innerHTML = User.create_date.slice(0,10);
+document.getElementById("registrationDate").innerHTML = User.create_date.slice(
+  0,
+  10
+);
 
 const form = document.querySelector("form[data-user]");
 form.firstName.value = User.name.split(" ")[0] || "";
@@ -94,6 +97,21 @@ form.addEventListener("submit", (e) => {
   }
 
   User.name = `${form.firstName.value} ${form.lastName.value}`;
+  if (
+    User.all().filter((el) => el.email == form.email.value && el.id != User.id)
+      .length > 0
+  ) {
+    let error = form.email.parentElement.querySelector(".error");
+    if (error != null) {
+      form.email.parentElement.removeChild(error);
+    }
+    error = document.createElement("p");
+    error.classList.add("error");
+    error.innerHTML = `<br>El email ya esta en uso.`;
+    form.email.parentElement.appendChild(error);
+    return;
+  }
+
   User.email = form.email.value;
   User.username = form.username.value;
 
