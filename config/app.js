@@ -5,6 +5,7 @@ let rutasProtegidas = [
   "Admin",
   "Admin-Comentarios",
   "Admin-Usuarios",
+  "Admin-Usuarios-Editor",
   "Admin-Post",
   "Admin-Post-Editor",
 ];
