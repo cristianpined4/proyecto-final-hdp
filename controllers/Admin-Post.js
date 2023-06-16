@@ -6,15 +6,17 @@ if (currentUser != null) {
   document.querySelector("h5[data-username]").innerHTML = currentUser.name;
 }
 
-let posts = new Post().all(),
+let posts = new Post(),
   currentPage = 1,
   itemsPerPage = 10;
 
-posts = posts.sort(
-  (a, b) =>
-    moment(b.create_date, "DD/MM/YYYY h:mm:ss a").unix() -
-    moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
-);
+posts = posts
+  .all()
+  .sort(
+    (a, b) =>
+      moment(b.create_date, "DD/MM/YYYY h:mm:ss a").unix() -
+      moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
+  );
 
 const renderPost = (post) => {
   let startIndex = (currentPage - 1) * itemsPerPage,
@@ -105,7 +107,14 @@ for (let i = 1; i <= totalPages; i++) {
       .classList.remove("active");
     this.classList.add("active");
     document.scrollingElement.scrollTop = 0;
-    renderPost(post);
+    posts = posts
+      .all()
+      .sort(
+        (a, b) =>
+          moment(b.create_date, "DD/MM/YYYY h:mm:ss a").unix() -
+          moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
+      );
+    renderPost(posts);
   });
 
   paginationElement.appendChild(li);

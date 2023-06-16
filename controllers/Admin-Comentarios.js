@@ -268,6 +268,21 @@ for (let i = 1; i <= totalPages; i++) {
       .classList.remove("active");
     this.classList.add("active");
     document.scrollingElement.scrollTop = 0;
+    post = post
+      .all()
+      .sort(
+        (a, b) =>
+          parseInt(
+            new Post()
+              .findById(b.id)
+              .findRelated("comentarios", "id_post", b.id).length
+          ) -
+          parseInt(
+            new Post()
+              .findById(a.id)
+              .findRelated("comentarios", "id_post", a.id).length
+          )
+      );
     renderPost(post);
   });
 
