@@ -102,3 +102,96 @@
     }
   }
 </style>
+<div class="container">
+    <div class="sidebar d-none d-md-block">
+      <div class="w-100 d-md-none d-flex justify-content-end">
+        <button class="menu btn btn-danger btn-sm rounded-5">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <h4 class="text-center my-3">Panel de Administración</h4>
+      <div class="d-flex justify-content-between text-center align-items-center flex-column">
+        <img src="https://www.w3schools.com/w3css/img_avatar2.png" class="img-fluid rounded-circle w-25">
+        <h5 class="my-3" data-username>Nombre de usuario</h5>
+        <a class="btn btn-danger mb-4" data-logout>Cerrar Sesión</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="?view=Admin">Inicio</a></li>
+          <li><a href="?view=Admin-Post">Gestionar Post</a></li>
+          <li><a href="?view=Admin-Usuarios">Gestionar Usuarios</a></li>
+          <li><a href="?view=Admin-Comentarios">Gestionar Comentarios<span></span></a></li>
+          <li><a href="?view=Inicio">Volver al sitio</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="main-content">
+      <div class="navbar navbar-expand-lg navbar-dark bg-dark d-block d-md-none">
+        <button class="navbar-toggler menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <div class="card content">
+        <div class="card-body">
+          <form id="editor" class="my-3">
+            <div class="d-flex justify-content-between align-items-center flex-column flex-md-row mb-4 mb-md-2">
+              <h1>Crear Usuario</h1>
+              <div class="d-flex justify-content-end align-items-center">
+                <button type="submit" class="btn btn-primary ms-3">Guardar</button>
+                <a class="btn btn-danger ms-3" href="?view=Admin-Usuarios">Cancelar</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="firstName">Nombre:</label>
+                <input type="text" class="form-control rounded-input" name="firstName" placeholder="Ingresa tu nombre">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="lastName">Apellido:</label>
+                <input type="text" class="form-control rounded-input" name="lastName" placeholder="Ingresa tu apellido">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" class="form-control rounded-input" name="email"
+                  placeholder="Ingresa tu correo electrónico">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="username">Usuario:</label>
+                <input type="text" class="form-control rounded-input" name="username" placeholder="Ingresa tu usuario">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="password">Nueva contraseña:</label>
+                <input type="password" class="form-control rounded-input" name="password"
+                  placeholder="Ingresa tu nueva contraseña">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="passrepeat">Verificar nueva contraseña:</label>
+                <input type="password" class="form-control rounded-input" name="passrepeat"
+                  placeholder="Verifica tu nueva contraseña">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="rol">Rol:</label>
+                <select class="form-control rounded-input" name="rol">
+                  <option value="admin">Administrador</option>
+                  <option value="usuario" selected>Usuario</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="status">Estado:</label>
+                <select class="form-control rounded-input" name="status">
+                  <option value="activo" selected>Activo</option>
+                  <option value="silenciado">Silenciado</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
