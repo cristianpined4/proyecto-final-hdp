@@ -1,9 +1,11 @@
 <style>
+  /* Estilos CSS para ocultar la barra de navegación y el pie de página */
   nav.navbar,
   footer {
     display: none !important;
   }
 
+  /* Estilos para el contenedor principal */
   .container {
     display: flex;
     flex-wrap: wrap;
@@ -12,6 +14,7 @@
     height: 100vh;
   }
 
+  /* Estilos para la barra lateral */
   .sidebar nav ul li:has(a.active),
   .sidebar nav ul li:hover {
     background-color: #242424;
@@ -42,7 +45,6 @@
     margin-bottom: 10px;
   }
 
-
   .sidebar ul li a {
     color: #fff;
     text-decoration: none;
@@ -51,6 +53,7 @@
     height: inherit;
   }
 
+  /* Estilos para el contenido principal */
   .main-content {
     flex: 1;
     padding: 1rem;
@@ -76,6 +79,7 @@
     justify-content: center;
   }
 
+  /* Estilos para el formulario de creación de usuarios */
   .main-content .card .card-body div.row,
   .main-content .card .card-body div.row input {
     margin-bottom: 1rem;
@@ -91,6 +95,7 @@
     text-align: center;
   }
 
+  /* Estilos para dispositivos móviles con ancho máximo de 768px */
   @media (max-width: 768px) {
     .main-content {
       padding: 0;
@@ -106,7 +111,9 @@
 
 <div class="container">
   <div class="sidebar d-none d-md-block">
+    <!-- Barra lateral -->
     <div class="w-100 d-md-none d-flex justify-content-end">
+      <!-- Botón de cierre de la barra lateral (solo visible en dispositivos móviles) -->
       <button class="menu btn btn-danger btn-sm rounded-5">
         <i class="fas fa-times"></i>
       </button>
@@ -119,6 +126,7 @@
     </div>
     <nav>
       <ul>
+        <!-- Enlaces de navegación en la barra lateral -->
         <li><a href="?view=Admin">Inicio</a></li>
         <li><a href="?view=Admin-Post">Gestionar Post</a></li>
         <li><a href="?view=Admin-Usuarios">Gestionar Usuarios</a></li>
@@ -129,6 +137,7 @@
   </div>
   <div class="main-content">
     <div class="navbar navbar-expand-lg navbar-dark bg-dark d-block d-md-none">
+      <!-- Barra de navegación (solo visible en dispositivos móviles) -->
       <button class="navbar-toggler menu">
         <i class="fas fa-bars"></i>
       </button>
@@ -136,6 +145,7 @@
     <div class="card content">
       <div class="card-body">
         <form id="editor" class="my-3">
+          <!-- Formulario de creación de usuario -->
           <div class="d-flex justify-content-between align-items-center flex-column flex-md-row mb-4 mb-md-2">
             <h1>Crear Usuario</h1>
             <div class="d-flex justify-content-end align-items-center">

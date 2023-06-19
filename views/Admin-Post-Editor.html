@@ -1,9 +1,13 @@
 <style>
+  /* Estilos CSS */
+
+  /* Ocultar la barra de navegación y el pie de página */
   nav.navbar,
   footer {
     display: none !important;
   }
 
+  /* Estilos para el contenedor principal */
   .container {
     display: flex;
     flex-wrap: wrap;
@@ -12,6 +16,7 @@
     height: 100vh;
   }
 
+  /* Estilos para la barra lateral */
   .sidebar nav ul li:has(a.active),
   .sidebar nav ul li:hover {
     background-color: #242424;
@@ -42,7 +47,6 @@
     margin-bottom: 10px;
   }
 
-
   .sidebar ul li a {
     color: #fff;
     text-decoration: none;
@@ -51,6 +55,7 @@
     height: inherit;
   }
 
+  /* Estilos para el contenido principal */
   .main-content {
     flex: 1;
     padding: 1rem;
@@ -80,6 +85,7 @@
   }
 
   @media (max-width: 768px) {
+    /* Estilos para pantallas más pequeñas */
     .main-content {
       padding: 0;
     }
@@ -107,6 +113,7 @@
     </div>
     <nav>
       <ul>
+        <!-- Enlaces de navegación en la barra lateral -->
         <li><a href="?view=Admin">Inicio</a></li>
         <li><a href="?view=Admin-Post">Gestionar Post</a></li>
         <li><a href="?view=Admin-Usuarios">Gestionar Usuarios</a></li>

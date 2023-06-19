@@ -1,9 +1,13 @@
 <style>
+  /* Estilos CSS para la interfaz de administración */
+
+  /* Oculta la barra de navegación y el pie de página */
   nav.navbar,
   footer {
     display: none !important;
   }
 
+  /* Estilos para el contenedor principal */
   .container {
     display: flex;
     flex-wrap: wrap;
@@ -12,6 +16,7 @@
     height: 100vh;
   }
 
+  /* Estilos para la barra lateral */
   .sidebar nav ul li:has(a.active),
   .sidebar nav ul li:hover {
     background-color: #242424;
@@ -42,7 +47,6 @@
     margin-bottom: 10px;
   }
 
-
   .sidebar ul li a {
     color: #fff;
     text-decoration: none;
@@ -51,6 +55,7 @@
     height: inherit;
   }
 
+  /* Estilos para el contenido principal */
   .main-content {
     flex: 1;
     padding: 1rem;
@@ -76,6 +81,7 @@
     justify-content: center;
   }
 
+  /* Estilos para dispositivos móviles con ancho máximo de 768px */
   @media (max-width: 768px) {
     .main-content {
       padding: 0;
@@ -91,7 +97,9 @@
 
 <div class="container">
   <div class="sidebar d-none d-md-block">
+    <!-- Barra lateral -->
     <div class="w-100 d-md-none d-flex justify-content-end">
+      <!-- Botón de cierre de la barra lateral (solo visible en dispositivos móviles) -->
       <button class="menu btn btn-danger btn-sm rounded-5">
         <i class="fas fa-times"></i>
       </button>
@@ -104,6 +112,7 @@
     </div>
     <nav>
       <ul>
+        <!-- Enlaces de navegación para diferentes vistas -->
         <li><a href="?view=Admin">Inicio</a></li>
         <li><a href="?view=Admin-Post">Gestionar Post</a></li>
         <li><a href="?view=Admin-Usuarios">Gestionar Usuarios</a></li>
@@ -114,6 +123,7 @@
   </div>
   <div class="main-content">
     <div class="navbar navbar-expand-lg navbar-dark bg-dark d-block d-md-none">
+      <!-- Barra de navegación (solo visible en dispositivos móviles) -->
       <button class="navbar-toggler menu">
         <i class="fas fa-bars"></i>
       </button>

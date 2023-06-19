@@ -1,9 +1,11 @@
 <style>
+  /* Oculta la barra de navegación y el pie de página */
   nav.navbar,
   footer {
     display: none !important;
   }
 
+  /* Estilos para el contenedor principal */
   .container {
     display: flex;
     flex-wrap: wrap;
@@ -12,12 +14,7 @@
     height: 100vh;
   }
 
-  .sidebar nav ul li:has(a.active),
-  .sidebar nav ul li:hover {
-    background-color: #242424;
-    cursor: pointer;
-  }
-
+  /* Estilos para la barra lateral */
   .sidebar {
     background-color: #333;
     color: #fff;
@@ -42,7 +39,6 @@
     margin-bottom: 10px;
   }
 
-
   .sidebar ul li a {
     color: #fff;
     text-decoration: none;
@@ -51,6 +47,7 @@
     height: inherit;
   }
 
+  /* Estilos para el contenido principal */
   .main-content {
     flex: 1;
     padding: 1rem;
@@ -69,6 +66,7 @@
     color: #555;
   }
 
+  /* Estilos para pantallas pequeñas */
   @media (max-width: 768px) {
     .main-content {
       padding: 0;
@@ -82,7 +80,9 @@
   }
 </style>
 
+<!-- Contenedor principal -->
 <div class="container">
+  <!-- Barra lateral -->
   <div class="sidebar d-none d-md-block">
     <div class="w-100 d-md-none d-flex justify-content-end">
       <button class="menu btn btn-danger btn-sm rounded-5">
@@ -105,6 +105,7 @@
       </ul>
     </nav>
   </div>
+  <!-- Contenido principal -->
   <div class="main-content">
     <div class="navbar navbar-expand-lg navbar-dark bg-dark d-block d-md-none">
       <button class="navbar-toggler menu">
@@ -185,3 +186,5 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
