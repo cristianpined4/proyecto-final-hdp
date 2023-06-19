@@ -1,4 +1,5 @@
 <style>
+  /* Estilos para el contenedor principal */
   #app {
     display: flex;
     justify-content: center;
@@ -7,10 +8,12 @@
     background-image: url("./assets/525105-Among-Trees.png");
   }
 
+  /* Estilos para el grupo de formulario que no es el último hijo */
   #app .card .card-body div.form-group:not(:last-child) {
     margin-bottom: 1.2rem;
   }
 
+  /* Estilos para el mensaje de error en el grupo de formulario */
   #app .card .card-body div.form-group .error {
     color: #ff3000;
     margin-top: -1rem;
@@ -18,6 +21,7 @@
     font-size: 0.8rem;
   }
 
+  /* Estilos para el mensaje de error en el cuerpo de la tarjeta */
   #app .card .card-body .error.form-message {
     color: #ff3000;
     margin-top: -1rem;
@@ -26,13 +30,15 @@
     text-align: center;
   }
 </style>
-<div class="container">
 
+<!-- Contenedor principal -->
+<div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6">
       <div class="card rounded-lg">
         <div class="card-body">
           <h5 class="card-title text-center">Iniciar sesión</h5>
+          <!-- Formulario de inicio de sesión -->
           <form id="inicio">
             <div class="form-group">
               <label for="username">Nombre de usuario</label>
