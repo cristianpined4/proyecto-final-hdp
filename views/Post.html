@@ -1,35 +1,43 @@
 <style>
+  /* Estilos para la barra de navegación */
   .navbar {
     z-index: 999;
     box-shadow: none;
   }
 
+  /* Estilos para la barra de navegación con fondo oscuro */
   .navbar.bg-dark {
     background-color: transparent !important;
   }
 
+  /* Estilos para la barra de navegación cuando el menú desplegable está abierto */
   .navbar:has(.navbar-collapse.collapse.show) {
     background-color: rgb(51, 45, 45) !important;
   }
 
+  /* Estilos para el contenedor principal */
   #app {
     margin-top: -5rem;
   }
 
+  /* Estilos para el slider */
   .slider .slider-slides {
     height: 450px;
   }
 
+  /* Estilos para las capciones del slider */
   .slider .slider-slides .slider-slide div .caption {
     z-index: 0;
   }
 
+  /* Estilos para ajustar el margen superior */
   .mt--5 {
     margin-top: -4rem !important;
     margin-bottom: 1rem !important;
     z-index: 99;
   }
 
+  /* Estilos para ajustar el ancho máximo de elementos multimedia en una tarjeta */
   #app .card .card-body .card-text img,
   #app .card .card-body .card-text video,
   #app .card .card-body .card-text iframe,
@@ -38,10 +46,15 @@
     max-width: 100%;
   }
 </style>
+
+<!-- Slider -->
 <div id="slider"></div>
+
+<!-- Contenido principal -->
 <main class="container mt--5">
   <div class="row">
     <div class="col-md-12">
+      <!-- Tarjeta de publicación -->
       <div class="card post">
         <div class="card-body">
           <h2 class="card-title text-center my-4"></h2>
@@ -49,21 +62,22 @@
           <div class="card-text"></div>
         </div>
       </div>
+
+      <!-- Botones sociales -->
       <div class="social-buttons my-5 d-flex justify-content-around flex-wrap">
-        <a class="btn btn-primary mb-3"><i class="fab fa-facebook-square me-2"></i>Compartir
-        </a>
-        <a class="btn btn-info mb-3">
-          <i class="fab fa-twitter me-2"></i>Compartir
-        </a>
-        <a class="btn btn-success mb-3">
-          <i class="fab fa-whatsapp me-2"></i>Compartir
-        </a>
+        <a class="btn btn-primary mb-3"><i class="fab fa-facebook-square me-2"></i>Compartir</a>
+        <a class="btn btn-info mb-3"><i class="fab fa-twitter me-2"></i>Compartir</a>
+        <a class="btn btn-success mb-3"><i class="fab fa-whatsapp me-2"></i>Compartir</a>
       </div>
+
+      <!-- Sección de comentarios -->
       <div class="comments mt-4">
         <h4>Comentarios</h4>
         <hr>
         <div class="comentarios" style="max-height:100vh;overflow-y: auto;"></div>
       </div>
+
+      <!-- Formulario de comentarios -->
       <form class="mt-4 card form-comentarios">
         <div class="card-body">
           <h5>Deja un comentario</h5>
@@ -75,11 +89,9 @@
             <label for="comentario">Comentario</label>
             <textarea class="form-control" name="comentario" rows="3" placeholder="Escribe tu comentario"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary mt-2">Enviar
-            comentario</button>
+          <button type="submit" class="btn btn-primary mt-2">Enviar comentario</button>
         </div>
       </form>
     </div>
-  </div>
   </div>
 </main>
