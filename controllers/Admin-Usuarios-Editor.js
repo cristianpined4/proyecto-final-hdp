@@ -1,4 +1,4 @@
-import Router from "../config/Router.js";
+﻿import Router from "../config/Router.js";
 import Comentarios from "../models/Comentarios.js";
 import Usuarios from "../models/Usuarios.js";
 
@@ -67,11 +67,11 @@ if (id != null) {
       <div class="d-flex justify-content-center align-items-center flex-column">
         <div class="alert alert-danger w-100" role="alert">
           <h4 class="alert-heading">Error!</h4>
-          <p>El post no existe</p>
+          <p>El usuario no existe</p>
           <hr>
           <p class="mb-0">Vuelve a intentarlo</p>
         </div>
-        <a href="?view=Admin-Post" class="btn btn-primary mt-4">Volver</a>
+        <a href="?view=Admin-Usuarios" class="btn btn-primary mt-4">Volver</a>
       </div>
     `;
   }
