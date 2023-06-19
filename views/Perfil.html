@@ -1,14 +1,17 @@
 <style>
+  /* Estilos para el contenedor de perfil */
   .profile-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
   }
 
+  /* Estilos para el grupo de formulario */
   .form-group {
     margin-bottom: 20px;
   }
 
+  /* Estilos para la foto de perfil */
   .profile-picture {
     width: 150px;
     height: 150px;
@@ -16,20 +19,24 @@
     object-fit: cover;
   }
 
+  /* Estilos para el cuadro de actividad */
   .activity-box {
     border: 1px solid #cccccc00;
     border-radius: 5px;
     padding: 10px;
   }
 
+  /* Estilos para los input redondeados */
   .rounded-input {
     border-radius: 20px;
   }
 
+  /* Estilos para los botones redondeados */
   .rounded-button {
     border-radius: 20px;
   }
 
+  /* Estilos para el mensaje de error en el formulario */
   #app .card .card-body div.form-group .error {
     color: #ff3000;
     margin-top: -1rem;
@@ -37,11 +44,13 @@
     font-size: 0.8rem;
   }
 </style>
+
 <!-- Contenido principal -->
 <div class="container my-4 profile-container card">
   <div class="card-body">
     <div class="row">
       <div class="col-md-4">
+        <!-- Sección de foto de perfil -->
         <div class="d-flex justify-content-center">
           <div class="my-4 d-flex justify-content-center align-items-center flex-column">
             <img src="https://www.w3schools.com/w3css/img_avatar2.png" alt="Foto de perfil" class="profile-picture">
@@ -50,6 +59,7 @@
         </div>
       </div>
       <div class="col-md-8">
+        <!-- Cuadro de actividad del usuario -->
         <div class="activity-box">
           <h5>Actividad del Usuario</h5>
           <ul class="list-group">
@@ -62,6 +72,7 @@
       </div>
       <div class="col-md-12 mt-4">
         <h1>Perfil de Usuario</h1>
+        <!-- Formulario de perfil -->
         <form data-user>
           <div class="row">
             <div class="form-group col-md-6">
