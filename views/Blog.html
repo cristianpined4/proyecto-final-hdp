@@ -1,45 +1,57 @@
 <style>
+  /* Estilos para la barra de navegación */
   .navbar {
     z-index: 999;
     box-shadow: none;
   }
 
+  /* Estilos para la barra de navegación con clase "bg-dark" */
   .navbar.bg-dark {
     background-color: transparent !important;
   }
 
+  /* Estilos para la barra de navegación cuando tiene la clase "navbar-collapse collapse show" */
   .navbar:has(.navbar-collapse.collapse.show) {
     background-color: rgb(51, 45, 45) !important;
   }
 
+  /* Estilos para el contenedor principal */
   #app {
     margin-top: -5rem;
   }
 
+  /* Estilos para el slider */
   .slider .slider-slides {
     height: 450px;
   }
 
+  /* Estilos para los elementos del slider */
   .slider .slider-slides .slider-slide div .caption {
     z-index: 0;
   }
 
+  /* Estilos para la clase "mt--5" */
   .mt--5 {
     margin-top: -4rem !important;
     margin-bottom: 1rem !important;
     z-index: 99;
   }
 
+  /* Estilos para la clase "col-12" dentro del elemento con id "last-post" */
   #last-post .col-12 {
     margin-bottom: 1.5rem !important;
   }
 
+  /* Estilos para las imágenes dentro de las tarjetas del elemento con id "last-post" */
   #last-post .card img {
     height: 300px;
   }
 </style>
 
+<!-- Slider -->
 <div id="slider"></div>
+
+<!-- Contenedor principal -->
 <div class="container mt--5">
   <div class="row">
     <div class="col-md-12 card px-5 pt-5">
