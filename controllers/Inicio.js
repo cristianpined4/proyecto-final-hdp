@@ -1,6 +1,6 @@
-import slideResponsive from "../config/slideResponsive.js";
-import Post from "../models/Post.js";
-import Usuarios from "../models/Usuarios.js";
+import slideResponsive from "../config/slideResponsive.js"; // Importamos la función slideResponsive
+import Post from "../models/Post.js"; // Importamos la clase Post
+import Usuarios from "../models/Usuarios.js"; // Importamos la clase Usuarios
 
 const stripHtmlTags = (str) => {
   if (str === null || str === "") return false;
@@ -41,6 +41,7 @@ posts.some((el, index) => {
     `;
   return index == 2;
 });
+
 document.querySelector("#slider").innerHTML = html;
 
 html = "";

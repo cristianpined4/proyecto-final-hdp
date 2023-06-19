@@ -1,7 +1,7 @@
-import slideResponsive from "../config/slideResponsive.js";
-import Post from "../models/Post.js";
-import Usuarios from "../models/Usuarios.js";
-import Router from "../config/Router.js";
+import slideResponsive from "../config/slideResponsive.js"; // Importamos la función slideResponsive
+import Post from "../models/Post.js"; // Importamos la clase Post
+import Usuarios from "../models/Usuarios.js";   // Importamos la clase Usuarios
+import Router from "../config/Router.js"; // Importamos la clase Router
 
 const stripHtmlTags = (str) => {
   if (str === null || str === "") return false;

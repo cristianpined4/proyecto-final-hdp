@@ -10,11 +10,12 @@ let id_post = routes.params.post_id;
 if (id_post == null) {
   routes.GoTo("?view=error");
 }
-
+// Validar si el post existe
 const post = new Post().findById(id_post);
 if (post == null) {
   routes.GoTo("?view=error");
 }
+// Validar si el post esta publicado
 
 let currentUser = JSON.parse(localStorage.getItem("current-user")) || null;
 if (currentUser != null) {
@@ -36,10 +37,11 @@ $slider.innerHTML = `
     </span>
   </div>
 `;
+// Inicializar el slider
 sliderResponsive("#slider", { isHeader: true });
 
 const autor = post.findRelated("usuarios", "id", post.id_usuario)[0];
-
+// Obtener los comentarios del post
 let comentarios = new Comentarios()
   .findRelated("comentarios", "id_post", post.id)
   .filter((comentario) => comentario.status == "aceptado")
@@ -52,7 +54,7 @@ let comentarios = new Comentarios()
 let date = moment(post.create_date, "DD/MM/YYYY h:mm:ss a").format(
   "dddd LL, h:mm:ss a"
 );
-
+// Renderizar el post
 const $post = document.querySelector(".card.post");
 $post.querySelector(
   ".imagen"
@@ -71,7 +73,7 @@ $post.querySelector(".card-text").innerHTML = `
 </p>
 <div class="my-3">${post.contenido}</div>
 `;
-
+// Renderizar los comentarios
 const renderComentarios = (comentarios) => {
   const $comentarios = document.querySelector(".comentarios");
   let html = "";
@@ -134,7 +136,7 @@ const renderComentarios = (comentarios) => {
 };
 
 renderComentarios(comentarios);
-
+// Agregar un comentario
 const $formComentario = document.querySelector(".form-comentarios");
 let currentUsuario = JSON.parse(localStorage.getItem("current-user"));
 if (currentUsuario == null) {
@@ -161,7 +163,7 @@ if (currentUsuario != null) {
     $formComentario.usuario.value = currentUsuario.name;
   }
 }
-
+// Responder un comentario
 document.addEventListener("submit", (e) => {
   e.preventDefault();
   if (e.target.matches(".form-comentarios")) {

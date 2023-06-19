@@ -1,10 +1,11 @@
-import Usuarios from "../models/Usuarios.js";
-import Router from "../config/Router.js";
+import Usuarios from "../models/Usuarios.js"; // Importamos la clase Usuarios
+import Router from "../config/Router.js";  // Importamos la clase Router
+// Variables
 let data = {
   username: "",
   password: "",
 };
-
+// Eventos
 document.addEventListener("keyup", (e) => {
   if (e.target.matches("#inicio input")) {
     data = {
