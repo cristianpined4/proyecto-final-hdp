@@ -1,4 +1,5 @@
 <style>
+  /* Estilos para el contenedor principal */
   #app {
     display: flex;
     justify-content: center;
@@ -8,10 +9,12 @@
     background-image: url("./assets/525105-Among-Trees.png");
   }
 
+  /* Estilos para el grupo de formulario (excepto el último) */
   #app .card .card-body div.form-group:not(:last-child) {
     margin-bottom: 1.2rem;
   }
 
+  /* Estilos para el mensaje de error en el grupo de formulario */
   #app .card .card-body div.form-group .error {
     color: #ff3000;
     margin-top: -1rem;
@@ -19,6 +22,7 @@
     font-size: 0.8rem;
   }
 
+  /* Estilos para el mensaje de error en el formulario */
   #app .card .card-body .error.form-message {
     color: #ff3000;
     margin-top: -1rem;
@@ -28,41 +32,46 @@
   }
 </style>
 
-
+<!-- Contenedor principal -->
 <div class="container">
-
   <div class="row justify-content-center">
     <div class="col-12 col-md-6">
+      <!-- Tarjeta con contenido -->
       <div class="card rounded-lg">
         <div class="card-body">
           <h5 class="card-title text-center">Registrarse</h5>
+          <!-- Formulario de registro -->
           <form id="registro">
+            <!-- Campo de nombre -->
             <div class="form-group">
               <label for="name">Nombre</label>
               <input type="text" class="form-control rounded-pill" name="name" placeholder="Ingrese su nombre completo">
             </div>
+            <!-- Campo de correo electrónico -->
             <div class="form-group">
               <label for="email">Correo electrónico</label>
               <input type="email" class="form-control rounded-pill" name="email"
                 placeholder="Ingrese su correo electrónico">
             </div>
-
+            <!-- Campo de nombre de usuario -->
             <div class="form-group">
               <label for="username">Nombre de usuario</label>
               <input type="text" class="form-control rounded-pill" name="username"
                 placeholder="Ingrese su nombre de usuario">
             </div>
-
+            <!-- Campo de contraseña -->
             <div class="form-group">
               <label for="password">Contraseña</label>
               <input type="password" class="form-control rounded-pill" name="password"
                 placeholder="Ingrese su contraseña">
             </div>
+            <!-- Campo de confirmación de contraseña -->
             <div class="form-group">
               <label for="password2">Comprobar contraseña</label>
               <input type="password" class="form-control rounded-pill" name="passrepeat"
                 placeholder="Repetir su contraseña">
             </div>
+            <!-- Botón de enviar formulario -->
             <button type="submit" class="btn btn-danger btn-block rounded-pill">Iniciar sesión</button>
           </form>
         </div>
