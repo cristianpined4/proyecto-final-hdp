@@ -1,95 +1,94 @@
+import Usuarios from "../models/Usuarios.js";
 import Comentarios from "../models/Comentarios.js";
-import Post from "../models/Post.js";
 
 let currentUser = JSON.parse(localStorage.getItem("current-user")) || null;
 if (currentUser != null) {
   document.querySelector("h5[data-username]").innerHTML = currentUser.name;
 }
 
-let posts = new Post(),
+let users = new Usuarios().all(),
   currentPage = 1,
   itemsPerPage = 10;
 
-posts = posts
-  .all()
-  .sort(
-    (a, b) =>
-      moment(b.create_date, "DD/MM/YYYY h:mm:ss a").unix() -
-      moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
-  );
-
-const renderPost = (post) => {
+const renderUsuarios = (users) => {
   let startIndex = (currentPage - 1) * itemsPerPage,
     endIndex = startIndex + itemsPerPage,
-    paginatedData = post.slice(startIndex, endIndex),
+    paginatedData = users.slice(startIndex, endIndex),
     html = "";
-  if (post.length == 0) {
+  if (users.length == 0) {
     html += `
       <div class="col-12">
         <div class="alert alert-warning" role="alert">
-          No hay publicaciones
+          No hay usuarios registrados
         </div>
       </div>
       `;
   }
-  post.some((el, index) => {
-    let autor = new Post().findRelated("usuarios", "id", el.id_usuario)[0].name;
+  users.some((el, index) => {
     html += `
       <div class="card mb-3">
       <div class="card-body d-flex justify-content-between align-items-center border-bottom border-dark flex-wrap flex-md-nowrap">
         <div class="info my-2">
-            <h5 class="card-title pe-2">${el.titulo} ${
-      el.status != "publicado"
-        ? ` - <span class="text-muted text-capitalize">${el.status}</span>`
-        : ""
-    }</h5>
-            <h6 class="card-subtitle my-2 text-muted">Autor: ${autor} -  Creado: ${
-      el.create_date
-    }</h6>
+            <h5 class="card-title pe-2">${
+              el.name
+            } - <span class="text-muted">@${
+      el.username
+    }</span> - <span class="text-muted text-capitalize">${el.status}</span></h5>
+            <h6 class="card-subtitle my-2 text-muted">Rol: <span class="text-capitalize">${
+              el.rol
+            } - </span> Creado: ${el.create_date}</h6>
         </div>
         <div class="option">
-          <a href="?view=Post&post_id=${
-            el.id
-          }" class="btn btn-primary btn-sm" target="_blank">
-            <i class="fas fa-eye"></i>
-          </a>
-          <a href="?view=Admin-Post-Editor&id=${
+          <a href="?view=Admin-Usuarios-Editor&id=${
             el.id
           }" class="btn btn-warning btn-sm">
             <i class="fas fa-edit"></i>
           </a>
-          <button class="btn btn-danger btn-sm delete" data-id="${el.id}">
+          ${
+            currentUser.id != el.id
+              ? `<button class="btn btn-danger btn-sm delete" data-id="${el.id}">
             <i class="fas fa-trash-alt"></i>
-          </button>
+          </button>`
+              : ""
+          }
+          ${
+            el.rol == "admin"
+              ? ""
+              : `<button class="btn btn-sm btn-info" data-id="${
+                  el.id
+                }" title="${
+                  el.status == "activo"
+                    ? "Silenciar Usuario"
+                    : "Desilenciar Usuario"
+                }">
+                  <i class="fa-solid ${
+                    el.status == "activo"
+                      ? "fa-head-side-cough"
+                      : "fa-head-side-cough-slash"
+                  }"></i>
+                </button>`
+          }
         </div>
       </div>
       </div>
     `;
     return index == paginatedData.length;
   });
-  document.getElementById("ListasPost").innerHTML = html;
-  let publicados = new Post()
-      .all()
-      .filter((el) => el.status == "publicado").length,
-    borradores = new Post()
-      .all()
-      .filter((el) => el.status == "borrador").length,
-    privados = new Post().all().filter((el) => el.status == "privado").length;
+  document.getElementById("ListasUsuarios").innerHTML = html;
+  let activos = users.filter((el) => el.status == "activo").length,
+    silenciado = users.filter((el) => el.status == "silenciado").length;
 
   document.querySelector(
-    ".main-content div[data-estadisticas] span[data-privados]"
-  ).innerHTML = privados;
+    ".main-content div[data-estadisticas] span[data-activos]"
+  ).innerHTML = activos;
   document.querySelector(
-    ".main-content div[data-estadisticas] span[data-borradores]"
-  ).innerHTML = borradores;
-  document.querySelector(
-    ".main-content div[data-estadisticas] span[data-publicados]"
-  ).innerHTML = publicados;
+    ".main-content div[data-estadisticas] span[data-silenciado]"
+  ).innerHTML = silenciado;
 };
-renderPost(posts);
+renderUsuarios(users);
 
 let paginationElement = document.querySelector("nav ul.pagination"),
-  totalPages = Math.ceil(posts.length / itemsPerPage);
+  totalPages = Math.ceil(users.length / itemsPerPage);
 for (let i = 1; i <= totalPages; i++) {
   let li = document.createElement("li");
   li.classList.add("page-item", "mx-2");
@@ -108,14 +107,7 @@ for (let i = 1; i <= totalPages; i++) {
       .classList.remove("active");
     this.classList.add("active");
     document.scrollingElement.scrollTop = 0;
-    posts = posts
-      .all()
-      .sort(
-        (a, b) =>
-          moment(b.create_date, "DD/MM/YYYY h:mm:ss a").unix() -
-          moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
-      );
-    renderPost(posts);
+    renderUsuarios(new Usuarios().all());
   });
 
   paginationElement.appendChild(li);
@@ -137,19 +129,28 @@ document.addEventListener("click", (e) => {
     e.target.matches("button.delete *")
   ) {
     let id = e.target.dataset.id || e.target.parentElement.dataset.id;
-    if (confirm("¿Estás seguro de eliminar esta publicación?")) {
-      let del = new Post().findById(id);
+    if (confirm("¿Estás seguro de eliminar este usuario?")) {
+      let del = new Usuarios().findById(id);
       del.delete();
-      alert("Publicación eliminada correctamente");
-      renderPost(
-        del
-          .all()
-          .sort(
-            (a, b) =>
-              moment(b.create_date, "DD/MM/YYYY h:mm:ss a").unix() -
-              moment(a.create_date, "DD/MM/YYYY h:mm:ss a").unix()
-          )
-      );
+      alert("Usuario eliminado correctamente");
+      renderUsuarios(del.all());
+    }
+  }
+
+  if (
+    e.target.matches("#ListasUsuarios button.btn-info") ||
+    e.target.matches("#ListasUsuarios button.btn-info > *")
+  ) {
+    if (confirm("¿Desea cambiar el estado del usuario?")) {
+      let id = e.target.dataset.id || e.target.parentElement.dataset.id,
+        usuario = new Usuarios().findById(id);
+      usuario.status = usuario.status == "activo" ? "silenciado" : "activo";
+      usuario.update();
+      renderUsuarios(new Usuarios().all());
+      if (currentUser.id == usuario.id) {
+        localStorage.setItem("current-user", JSON.stringify(usuario));
+      }
+      alert("Se ha cambiado el estado del usuario a " + usuario.status);
     }
   }
 });
