@@ -1,6 +1,6 @@
 import slideResponsive from "../config/slideResponsive.js"; // Importamos la función slideResponsive
 import Post from "../models/Post.js"; // Importamos la clase Post
-import Usuarios from "../models/Usuarios.js";   // Importamos la clase Usuarios
+import Usuarios from "../models/Usuarios.js"; // Importamos la clase Usuarios
 import Router from "../config/Router.js"; // Importamos la clase Router
 
 const stripHtmlTags = (str) => {
@@ -74,6 +74,12 @@ const renderPosts = (post) => {
     let date = moment(el.create_date, "DD/MM/YYYY h:mm:ss a").fromNow(),
       autor = new Usuarios().findById(el.id_usuario);
 
+    if (autor == undefined) {
+      autor = "Cuenta eliminada";
+    } else {
+      autor = autor.name;
+    }
+
     html += `
     <div class="col col-12 col-md-6 col-lg-4">
         <div class="card border shadow-3">
@@ -83,7 +89,7 @@ const renderPosts = (post) => {
             <p class="d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted">
                 <i class="fas fa-user me-1"></i> 
-                ${autor.name}
+                ${autor}
               </small>
               <small class="text-muted">
                 <i class="fas fa-clock me-1"></i> 

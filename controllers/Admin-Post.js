@@ -33,7 +33,12 @@ const renderPost = (post) => {
       `;
   }
   post.some((el, index) => {
-    let autor = new Post().findRelated("usuarios", "id", el.id_usuario)[0].name;
+    let autor = new Post().findRelated("usuarios", "id", el.id_usuario)[0];
+    if (autor == undefined) {
+      autor = "Cuenta eliminada";
+    } else {
+      autor = autor.name;
+    }
     html += `
       <div class="card mb-3">
       <div class="card-body d-flex justify-content-between align-items-center border-bottom border-dark flex-wrap flex-md-nowrap">

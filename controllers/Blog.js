@@ -53,6 +53,12 @@ const renderPosts = () => {
     let date = moment(el.create_date, "DD/MM/YYYY h:mm:ss a").fromNow(),
       autor = new Usuarios().findById(el.id_usuario);
 
+    if (autor == undefined) {
+      autor = "Cuenta eliminada";
+    } else {
+      autor = autor.name;
+    }
+
     html += `
     <div class="col col-12 col-md-6 col-lg-4">
         <div class="card border shadow-3">
@@ -62,7 +68,7 @@ const renderPosts = () => {
             <p class="d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted">
                 <i class="fas fa-user me-1"></i> 
-                ${autor.name}
+                ${autor}
               </small>
               <small class="text-muted">
                 <i class="fas fa-clock me-1"></i> 

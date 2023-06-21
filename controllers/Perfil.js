@@ -1,6 +1,4 @@
 import Usuarios from "../models/Usuarios.js";
-import Post from "../models/Post.js";
-import Comentarios from "../models/Comentarios.js";
 import Router from "../config/Router.js";
 
 const router = new Router();
@@ -8,8 +6,8 @@ const router = new Router();
 let expresiones = {
   firstName: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
   lastName: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.,
-  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // valida que sea un email valido
-  username: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+  email: /^[a-z0-9_.+-]+@[a-z0-9-]+\.[a-z0-9-.]+$/, // valida que sea un email valido
+  username: /^[a-z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
   currentPassword: /^([A-Za-z\d$@$#!%*?&]|[^ ]){1,15}$/, // 8 caracteres, 1 mayuscula, 1 minuscula, 1 numero y 1 caracter especial,
   password:
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$#!%*?&])([A-Za-z\d$@$#!%*?&]|[^ ]){8,15}$/, // 8 caracteres, 1 mayuscula, 1 minuscula, 1 numero y 1 caracter especial
@@ -75,7 +73,7 @@ form.addEventListener("submit", (e) => {
           error.innerHTML = `<br>El campo <b>Email</b> debe ser un email valido.`;
           break;
         case "username":
-          error.innerHTML = `<br>El campo <b>Usuario</b> debe tener entre 4 y 16 caracteres, solo puede contener numeros, letras, guiones y guiones bajos.`;
+          error.innerHTML = `<br>El campo <b>Usuario</b> debe tener entre 4 y 16 caracteres, solo puede contener numeros, letras minusculas, guiones y guiones bajos.`;
           break;
         case "currentPassword":
           error.innerHTML = `<br>El campo <b>Contraseña actual</b> debe tener al menos 8 caracteres, 1 mayuscula, 1 minuscula, 1 numero y 1 caracter especial.`;

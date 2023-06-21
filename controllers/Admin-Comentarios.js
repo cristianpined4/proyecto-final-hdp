@@ -58,6 +58,13 @@ const renderComentarios = (id) => {
   comentarios.forEach((el) => {
     if (el.padre == "null") {
       let autor = el.findRelated("usuarios", "id", el.id_usuario)[0];
+      if (!autor) {
+        autor = {
+          name: "Usuario eliminado",
+          rol: "admin",
+          status: "activo",
+        };
+      }
       let date_post = moment(el.create_date, "DD/MM/YYYY h:mm:ss a").fromNow();
       html += `
         <div class="card mb-3 ${
@@ -119,6 +126,13 @@ const renderComentarios = (id) => {
     comentarios.forEach((el2) => {
       if (el.id == el2.padre) {
         let autor2 = el2.findRelated("usuarios", "id", el2.id_usuario)[0];
+        if (!autor2) {
+          autor2 = {
+            name: "Usuario eliminado",
+            rol: "admin",
+            status: "activo",
+          };
+        }
         let date_post = moment(
           el2.create_date,
           "DD/MM/YYYY h:mm:ss a"

@@ -40,7 +40,12 @@ $slider.innerHTML = `
 // Inicializar el slider
 sliderResponsive("#slider", { isHeader: true });
 
-const autor = post.findRelated("usuarios", "id", post.id_usuario)[0];
+let autor = post.findRelated("usuarios", "id", post.id_usuario)[0];
+if (autor == undefined) {
+  autor = "Cuenta eliminada";
+} else {
+  autor = autor.name;
+}
 // Obtener los comentarios del post
 let comentarios = new Comentarios()
   .findRelated("comentarios", "id_post", post.id)
@@ -64,7 +69,7 @@ $post.querySelector(".card-text").innerHTML = `
 <p class="d-flex justify-content-between align-items-center-md flex-column flex-md-row mt-4 mb-5">
   <small class="text-muted">
     <i class="fas fa-user me-1"></i> 
-    ${autor.name}
+    ${autor}
   </small>
   <small class="text-muted">
     <i class="fas fa-clock me-1"></i> 
@@ -89,13 +94,18 @@ const renderComentarios = (comentarios) => {
   comentarios.forEach((el) => {
     if (el.padre == "null") {
       let autor = el.findRelated("usuarios", "id", el.id_usuario)[0];
+      if (autor == undefined) {
+        autor = "Cuenta eliminada";
+      } else {
+        autor = autor.name;
+      }
       let date_post = moment(el.create_date, "DD/MM/YYYY h:mm:ss a").fromNow();
       html += `<div class="card mb-3">
           <div class="card-body">
             <h6 class="mt-0 d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted mb-2">
                 <i class="fas fa-user me-1"></i> 
-                ${autor.name}
+                ${autor}
               </small>
               <small class="text-muted">
                 <i class="fas fa-clock me-1"></i> 
@@ -110,6 +120,11 @@ const renderComentarios = (comentarios) => {
     comentarios.forEach((el2) => {
       if (el.id == el2.padre) {
         let autor2 = el2.findRelated("usuarios", "id", el2.id_usuario)[0];
+        if (autor2 == undefined) {
+          autor2 = "Cuenta eliminada";
+        } else {
+          autor2 = autor2.name;
+        }
         let date_post = moment(
           el2.create_date,
           "DD/MM/YYYY h:mm:ss a"
@@ -119,7 +134,7 @@ const renderComentarios = (comentarios) => {
             <h6 class="mt-0 d-flex justify-content-between align-items-center-md flex-column flex-md-row">
               <small class="text-muted mb-2">
                 <i class="fas fa-user me-1"></i> 
-                ${autor2.name}
+                ${autor2}
               </small>
               <small class="text-muted">
                 <i class="fas fa-clock me-1"></i> 
