@@ -70,7 +70,7 @@ form.addEventListener("submit", (e) => {
           error.innerHTML = `<br>El campo <b>Apellido</b> debe tener entre 1 y 40 caracteres, solo puede contener letras y espacios, pueden llevar acentos.`;
           break;
         case "email":
-          error.innerHTML = `<br>El campo <b>Email</b> debe ser un email valido.`;
+          error.innerHTML = `<br>El campo <b>Email</b> debe ser un email valido. Evite usar letras mayusculas.`;
           break;
         case "username":
           error.innerHTML = `<br>El campo <b>Usuario</b> debe tener entre 4 y 16 caracteres, solo puede contener numeros, letras minusculas, guiones y guiones bajos.`;
